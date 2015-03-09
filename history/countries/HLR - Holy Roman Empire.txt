@@ -1,0 +1,90 @@
+government = imperial_government
+mercantilism = 0.1
+technology_group = western
+culture_group_union = germanic
+religion = catholic
+
+set_variable = { which = num_of_hre_electors value = 0 } #current number of electors, will be updated on startup
+set_variable = { which = hre_num_of_electors value = 7 } #Max number of electors
+
+set_variable = { which = num_of_lay_electors value = 0 }
+set_variable = { which = max_lay value = 4 }
+
+set_variable = { which = num_of_spiritual_electors value = 0 }
+set_variable = { which = max_spiritual value = 3 }
+
+set_variable = { which = empire_member_mood value = 0 }
+set_variable = { which = empire_common_penny value = 0 }
+
+1495.8.7 = { #Diet of Worms
+	set_global_flag = had_diet1495
+	imperial_ban_allowed = yes
+	set_global_flag = reichsregiment_passed
+	set_global_flag = penny_passed
+	set_global_flag = chamber_passed
+	
+	set_global_flag = landfriede_passed #cant declare without cb
+	
+	set_variable = { which = hre_opinion_reichsregiment value = 1 }
+	set_variable = { which = hre_opinion_penny value = 0 }
+}
+
+1502.1.1 = {
+	clr_global_flag = reichsregiment_passed
+}
+
+1506.1.1 = { #ended in 1505, check hre_on_actions
+	clr_global_flag = penny_passed
+	set_global_flag = had_diet
+}
+
+1513.1.1 = { #1512, same reason as above
+	set_global_flag = had_diet
+}
+
+1519.6.28 = {
+	set_global_flag = reichsregiment_passed
+}
+
+1531.1.1 = {
+	clr_global_flag = reichsregiment_passed
+}
+
+1648.10.24 = {
+	set_variable = { which = hre_num_of_electors value = 8 }
+	set_variable = { which = max_lay value = 5 }
+}
+
+1692.1.1 = {
+	set_variable = { which = hre_num_of_electors value = 9 }
+	set_variable = { which = max_lay value = 6 }
+}
+
+1717.5.13 = {
+	set_global_flag = hereditary_hre
+	hre_inheritable = yes
+	set_allow_female_emperor = yes
+}
+
+1779.1.1 = {
+	set_variable = { which = hre_num_of_electors value = 8 }
+	set_variable = { which = max_lay value = 5 }
+}
+
+1803.1.1 = {
+	set_variable = { which = max_spiritual value = 0 }
+	set_variable = { which = max_lay value = 8 }
+}
+
+1806.8.6 = {
+	clr_global_flag = had_diet1495
+	imperial_ban_allowed = no
+	clr_global_flag = reichsregiment_passed
+	clr_global_flag = penny_passed
+	clr_global_flag = chamber_passed
+	clr_global_flag = hereditary_hre
+	hre_inheritable = no
+	set_allow_female_emperor = no
+	
+	set_global_flag = hre_disband
+}

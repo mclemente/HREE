@@ -1,0 +1,100 @@
+# country
+on_startup = {
+	if = {
+		limit = {
+			hre_size = 1
+			is_emperor = yes
+		}
+		country_event = {
+		    id = hre_startup.0
+		}
+	}
+	if = {
+		limit = {
+			is_year = 1495
+			NOT = { has_global_flag = had_diet1495 }
+			NOT = { is_year = 1496 }
+		}
+		country_event = {
+			id = hre_reforms.0
+			days = 30
+			random = 10
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = spokesman_diet
+		}
+		country_event = {
+			id = hre_reforms.7
+			days = 90
+			random = 10
+		}
+	}
+	if = {
+		limit = {
+			is_part_of_hre = yes
+			is_emperor = no
+			OR = {
+				AND = {
+					is_year = 1505
+					NOT = { is_year = 1506 }
+				}
+				AND = {
+					is_year = 1512
+					NOT = { is_year = 1513 }
+				}
+			}
+		}
+		country_event = {
+			id = hre_reforms.13
+			days = 30
+			random = 10
+		}
+	}
+}
+
+# country
+# root = winning country, from = loser country
+on_war_won = {
+	events = {
+		hre_war.5
+		hre_war.6
+		hre_electors.12
+		hre_electors.13 #Ruler Imperial Ban
+		hre_reforms_events.2 #Common Penny Army wins war
+	}
+}
+
+# country
+# root = loser country, from = winner country
+on_war_lost = {
+	events = {
+		hre_electors.13 #Ruler Imperial Ban
+		hre_reforms_events.3 #CPA disbands
+	}
+}
+
+# country 
+on_new_monarch = {
+	events = {
+		hre_electors.3 #Elector Restored
+		hre_electors.10 #Handling Palatinate's Ban
+		hre_electors.11 #Handling Palatinate's Ban pt.2
+		hre_reforms.12 #Giving Electorate to worthy allies
+		flavor_boh.1 #In case monarch dies
+	}
+}
+
+# Emperor coming to the defense of a HRE member
+on_hre_defense = {
+	events = {
+		908
+	}
+}
+
+on_bi_yearly_pulse = {
+	events = {
+		hre_reforms_events.0 #Common Penny
+	}
+}

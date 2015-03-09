@@ -1,0 +1,16 @@
+l_english:
+ bohemian_rebels_title: "Bohemians"
+ bohemian_rebels_name: "$COUNTRY$ Bohemian Rebels"
+ bohemian_rebels_desc: "The Bohemians are tired of being oppressed and want their own nation."
+ bohemian_rebels_army: "Bohemian Army"
+ bohemian_rebels_demand: "Bohemian Independence"
+ bohemian_rebels_demand_desc: "Not of the [Root.Culture.GetName] culture, neither of the [Root.Religion.GetName] religion, the Bohemians want their independence back."
+ #DISASTER
+ bohemian_revolt: "Bohemian Revolt"
+ desc_bohemian_revolt: "It appears Bohemians are tired of Austria's rule over Bohemia and its impositions."
+ bohemian_revolt.0.t: "The Bohemian Revolt"
+ bohemian_revolt.0.d: "The Bohemians are tired of being oppressed and want out of the [HAB.Religion.GetName] nation of [HAB.GetName]."
+ bohemian_revolt.1.t: "The End of the Bohemian Revolt"
+ bohemian_revolt.1.d: "The Bohemian Revolt has finally ended."
+ bohemian_revolt.2.t: "The [Root.Culture.GetName] Electorate"
+ bohemian_revolt.2.d: "Since time immemorial Bohemia was an Elector of the Empire, ever since Austria inheritted our throne,the title passed to them. However, we're standing on our feet again, so the rightful title of Electors is ours."

@@ -1,0 +1,88 @@
+country_decisions = {
+	see_hre_variables = {
+		major = yes
+		potential = {
+			ai = no
+			is_part_of_hre = yes
+		}
+		allow = {
+			always = no
+		}
+		effect = {
+			custom_tooltip = hre_num_of_electors_tooltip
+			if = {
+				limit = {
+					HLR = { is_variable_equal = { which = num_of_hre_electors which = hre_num_of_electors } }
+				}
+				custom_tooltip = num_of_hre_electors_tooltip
+			}
+			if = {
+				limit = {
+					HLR = { is_variable_equal = { which = num_of_hre_electors which = hre_num_of_electors } }
+				}
+				custom_tooltip = num_of_hre_electors_badtooltip
+			}
+			custom_tooltip = max_lay_tooltip
+			if = {
+				limit = {
+					HLR = { is_variable_equal = { which = num_of_lay_electors which = max_lay } }
+				}
+				custom_tooltip = num_of_lay_electors_tooltip
+			}
+			if = {
+				limit = {
+					NOT = { HLR = { is_variable_equal = { which = num_of_lay_electors which = max_lay } } }
+				}
+				custom_tooltip = num_of_lay_electors_badtooltip
+			}
+			custom_tooltip = max_spiritual_tooltip
+			if = {
+				limit = {
+					HLR = { is_variable_equal = { which = num_of_spiritual_electors which = max_spiritual } }
+				}
+				custom_tooltip = num_of_spiritual_electors_tooltip
+			}
+			if = {
+				limit = {
+					NOT = { HLR = { is_variable_equal = { which = num_of_spiritual_electors which = max_spiritual } } }
+				}
+				custom_tooltip = num_of_spiritual_electors_badtooltip
+			}
+			custom_tooltip = empire_member_mood_tooltip
+			if = {
+				limit = { has_global_flag = reichsregiment_passed }
+				custom_tooltip = REICHSREGIMENT_PASSED
+				custom_tooltip = hre_opinion_reichsregiment_tooltip
+			}
+			if = {
+				limit = { has_global_flag = landfriede_passed }
+				custom_tooltip = LANDFRIEDE_PASSED
+			}
+			if = {
+				limit = { has_global_flag = chamber_passed }
+				custom_tooltip = CHAMBER_PASSED
+			}
+			#if = {
+			#	limit = { has_global_flag = circle_passed }
+			#	custom_tooltip = CIRCLE_PASSED
+			#}
+			if = {
+				limit = { has_global_flag = penny_passed }
+				custom_tooltip = PENNY_PASSED
+				custom_tooltip = TOTAL_PENNY_COLLECTED
+				custom_tooltip = hre_opinion_penny_tooltip
+			}
+			if = {
+				limit = { has_global_flag = hereditary_hre }
+				custom_tooltip = HEREDITARY_PASSED
+			}
+			if = {
+				limit = { any_country = { has_country_flag = spokesman_diet } }
+				every_country = {
+					limit = { has_country_flag = spokesman_diet }
+				}
+				custom_tooltip = spokesman_diet_tooltip
+			}
+		}
+	}
+}

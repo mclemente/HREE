@@ -1,0 +1,609 @@
+namespace = hre_electors_search
+#Less than X Electors
+country_event = {
+	id = hre_electors_search.1
+	title = hre_electors_search.1.t #Prince-Electors
+	desc = hre_electors_search.1.d
+	picture = HRE_eventPicture
+	
+	trigger = {
+		OR = {
+			AND = {
+				NOT = { num_of_electors = 7 }
+				HLR = { is_variable_equal = { which = hre_num_of_electors value = 7 } }
+			}
+			AND = {
+				NOT = { num_of_electors = 8 }
+				HLR = { is_variable_equal = { which = hre_num_of_electors value = 8 } }
+			}
+			AND = {
+				NOT = { num_of_electors = 9 }
+				HLR = { is_variable_equal = { which = hre_num_of_electors value = 9 } }
+			}
+		}
+		OR = {
+			is_emperor = yes
+			AND = {
+				emperor = { is_at_war = yes }
+				is_elector = yes
+			}
+		}
+		is_at_war = no
+		NOT = { has_global_flag = checking_for_spiritual }
+		NOT = { has_global_flag = checking_for_lay }
+		NOT = { has_global_flag = search_for_electors_pt1 }
+		NOT = { has_global_flag = hereditary_hre }
+		OR = {
+			hre_leagues_enabled = no
+			hre_religion_locked = yes
+			hre_religion_treaty = yes
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 3
+	}
+	
+	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = num_of_lay_electors value = 0 }
+				set_variable = { which = num_of_spiritual_electors value = 0 }
+			}
+			every_country = {
+				limit = {
+					has_country_flag = hre_elector
+					is_elector = no
+				}
+				clr_country_flag = hre_elector
+			}
+			every_country = {
+				limit = {
+					is_elector = yes
+					government = monarchy
+				}
+				HLR = {	change_variable = { which = num_of_lay_electors value = 1 } }
+				set_country_flag = hre_elector
+			}
+			if = {
+				limit = { HLR = { check_variable = { which = max_spiritual value = 1 } } }
+				every_country = {
+					limit = {
+						is_elector = yes
+						government = theocracy
+					}
+					HLR = {	change_variable = { which = num_of_spiritual_electors value = 1 } }
+					set_country_flag = hre_elector
+				}
+			}
+			set_global_flag = search_for_electors_pt1
+			custom_tooltip = TOTAL_LAY
+			custom_tooltip = TOTAL_SPIRITUAL
+		}
+	}
+	
+	option = {
+		name = OK
+		hidden_effect = { country_event = { id = hre_electors_search.2 days = 15 } }
+	}
+}
+
+#Less than X Electors, pt.2
+country_event = {
+	id = hre_electors_search.2
+	title = hre_electors_search.2.t #Prince-Electors
+	desc = hre_electors_search.2.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = { HLR = { is_variable_equal = { which = num_of_lay_electors which = max_lay } } }
+			}
+			custom_tooltip = TOTAL_LAY
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = max_spiritual value = 1 } } }
+			if = {
+				limit = { NOT = { HLR = { is_variable_equal = { which = num_of_spiritual_electors which = max_spiritual } } } }
+				custom_tooltip = TOTAL_SPIRITUAL
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		if = {
+			limit = { HLR = { check_variable = { which = max_spiritual value = 1 } } }
+			if = {
+				limit = {
+					NOT = { HLR = { is_variable_equal = { which = num_of_spiritual_electors which = max_spiritual } } }
+				}
+				custom_tooltip = CHECKING_SPIRITUAL
+				set_global_flag = checking_for_spiritual
+			}
+		}
+		if = {
+			limit = {
+				NOT = { HLR = { is_variable_equal = { which = num_of_lay_electors which = max_lay } } }
+			}
+			custom_tooltip = CHECKING_LAY
+			set_global_flag = checking_for_lay
+		}
+		clr_global_flag = search_for_electors_pt1
+	}
+}
+	
+#Search for Lay
+country_event = {
+	id = hre_electors_search.3
+	title = hre_electors_search.3.t
+	desc = hre_electors_search.3.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		has_global_flag = checking_for_lay
+		government = monarchy
+		is_part_of_hre = yes
+		is_elector = no
+		is_emperor = no
+		is_subject = no
+		OR = {
+			AND = {
+				emperor = { religion = ROOT }
+				hre_religion_locked = yes
+			}
+			hre_religion_treaty = yes
+			hre_leagues_enabled = no
+		}
+		NOT = { has_ruler_modifier = hre_imperial_ban }
+	}
+	
+	mean_time_to_happen = {
+		months = 12
+		modifier = {
+			factor = 0.95
+			is_great_power = yes
+		}
+		modifier = {
+			factor = 1.2
+			any_known_country = {
+				is_part_of_hre = yes
+				is_emperor = no
+				government = monarchy
+				religion = ROOT
+				num_of_cities = ROOT
+			}
+		}
+		modifier = {
+			factor = 1.1
+			capital_scope = {
+				any_neighbor_province = {
+					owner = { is_elector = yes }
+				}
+			}
+		}
+		modifier = {
+			factor = 1.1
+			any_neighbor_country = {
+				is_part_of_hre = no
+				is_great_power = yes
+			}
+			NOT = { total_base_tax = 40 }
+		}
+		modifier = {
+			factor = 3
+			any_neighbor_country = {
+				is_emperor = yes
+			}
+			NOT = { num_of_cities = 3 }
+		}
+		modifier = {
+			factor = 0.99
+			emperor = {
+				reverse_has_opinion = {
+					who = ROOT
+					value = 150
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			num_of_cities = 3
+		}
+		modifier = {
+			factor = 3
+			NOT = { num_of_cities = 3 }
+		}
+		modifier = {
+			factor = 0.99
+			prestige = 50
+		}
+		modifier = {
+			factor = 0.98
+			prestige = 90
+		}
+		modifier = {
+			factor = 0.99
+			is_bankrupt = no
+		}
+		modifier = {
+			factor = 0.99
+			total_base_tax = 40
+		}
+		modifier = {
+			factor = 1.1
+			emperor = { dynasty = ROOT }
+		}
+		modifier = {
+			factor = 1.1
+			any_elector = {	dynasty = ROOT }
+		}
+		#War, Alliances & Opinion Modifiers
+		modifier = {
+			factor = 0.98
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = fought_to_the_end
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = refused_join_war_vs_us
+				}
+			}
+		}
+		modifier = {
+			factor = 1.2
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = break_alliance_war
+				}
+			}
+		}
+		modifier = {
+			factor = 1.1
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = dishonoured_alliance
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = declared_war_on_us
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = had_war_with_us
+				}
+			}
+		}
+		modifier = {
+			factor = 0.98
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = fought_to_the_end
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = refused_join_war_vs_us
+				}
+			}
+		}
+		modifier = {
+			factor = 1.2
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = break_alliance_war
+				}
+			}
+		}
+		modifier = {
+			factor = 1.1
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = dishonoured_alliance
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = declared_war_on_us
+				} 
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = had_war_with_us
+				} 
+			}
+		}
+	}
+	
+	immediate = { hidden_effect = { HLR = { change_variable = { which = num_of_lay_electors value = 1 } } } }
+	
+	option = {
+		name = hre_electors_search.3.oa
+		elector = yes
+		add_prestige = 10
+		add_stability = 1
+		if = {
+			limit = {
+				NOT = { is_year = 1803 }
+				HLR = { check_variable = { which = num_of_lay_electors which = max_lay } }
+			}
+			clr_global_flag = checking_for_lay
+		}
+	}
+}
+
+#Search for Spiritual
+country_event = {
+	id = hre_electors_search.4
+	title = hre_electors_search.3.t
+	desc = hre_electors_search.4.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		has_global_flag = checking_for_spiritual
+		government = theocracy
+		is_part_of_hre = yes
+		is_elector = no
+		is_subject = no
+		OR = {
+			AND = {
+				emperor = { religion = ROOT }
+				hre_religion_locked = yes
+			}
+			hre_religion_treaty = yes
+			hre_leagues_enabled = no
+		}
+		NOT = { has_ruler_modifier = hre_imperial_ban }
+	}
+	
+	mean_time_to_happen = {
+		months = 12
+		modifier = {
+			factor = 0.95
+			is_great_power = yes
+		}
+		modifier = {
+			factor = 0.5
+			hre_religion = catholic
+			has_country_modifier = primas_germaniae
+		}
+		modifier = {
+			factor = 1.2
+			any_known_country = {
+				is_part_of_hre = yes
+				is_emperor = no
+				government = theocracy
+				religion = ROOT
+				num_of_cities = ROOT
+			}
+		}
+		modifier = {
+			factor = 1.05
+			capital_scope = {
+				any_neighbor_province = {
+					owner = { is_elector = yes }
+				}
+			}
+		}
+		modifier = {
+			factor = 1.1
+			any_neighbor_country = {
+				is_part_of_hre = no
+				is_great_power = yes
+			}
+			NOT = { total_base_tax = 40 }
+		}
+		modifier = {
+			factor = 3
+			any_neighbor_country = {
+				is_emperor = yes
+			}
+			NOT = { num_of_cities = 3 }
+		}
+		modifier = {
+			factor = 0.99
+			emperor = {
+				reverse_has_opinion = {
+					who = ROOT
+					value = 150
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			num_of_cities = 3
+		}
+		modifier = {
+			factor = 3
+			NOT = { num_of_cities = 3 }
+		}
+		modifier = {
+			factor = 0.99
+			prestige = 50
+		}
+		modifier = {
+			factor = 0.99
+			prestige = 90
+		}
+		modifier = {
+			factor = 0.99
+			legitimacy = 70
+		}
+		modifier = {
+			factor = 0.99
+			is_bankrupt = no
+		}
+		modifier = {
+			factor = 0.99
+			total_base_tax = 40
+		}
+		modifier = {
+			factor = 1.02
+			dynasty = emperor
+		}
+		modifier = {
+			factor = 1.02
+			any_elector = {	dynasty = ROOT }
+		}
+		#War, Alliances & Opinion Modifiers
+		modifier = {
+			factor = 0.98
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = fought_to_the_end
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = refused_join_war_vs_us
+				}
+			}
+		}
+		modifier = {
+			factor = 1.03
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = break_alliance_war
+				}
+			}
+		}
+		modifier = {
+			factor = 1.03
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = dishonoured_alliance
+				}
+			}
+		}
+		modifier = {
+			factor = 1.05
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = declared_war_on_us
+				}
+			}
+		}
+		modifier = {
+			factor = 1.05
+			emperor = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = had_war_with_us
+				}
+			}
+		}
+		modifier = {
+			factor = 0.98
+			any_elector = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = fought_to_the_end
+				}
+			}
+		}
+		modifier = {
+			factor = 0.99
+			any_elector = {
+				has_opinion_modifier = {
+				who = ROOT
+				modifier = refused_join_war_vs_us
+			} }
+		}
+		modifier = {
+			factor = 1.02
+			any_elector = {
+				has_opinion_modifier = {
+				who = ROOT
+				modifier = break_alliance_war
+			} }
+		}
+		modifier = {
+			factor = 1.01
+			any_elector = {
+				has_opinion_modifier = {
+				who = ROOT
+				modifier = dishonoured_alliance
+			} }
+		}
+		modifier = {
+			factor = 1.05
+			any_elector = {
+				has_opinion_modifier = {
+				who = ROOT
+				modifier = declared_war_on_us
+			} }
+		}
+		modifier = {
+			factor = 1.05
+			any_elector = {
+				has_opinion_modifier = {
+				who = ROOT
+				modifier = had_war_with_us
+			} }
+		}
+	}
+	
+	immediate = { hidden_effect = { HLR = { change_variable = { which = num_of_spiritual_electors value = 1 } } } }
+	
+	option = {
+		name = hre_electors_search.3.oa
+		elector = yes
+		add_prestige = 10
+		add_stability = 1
+		if = {
+			limit = { HLR = { check_variable = { which = num_of_spiritual_electors which = max_spiritual } } }
+			clr_global_flag = checking_for_spiritual
+		}
+	}
+}
+
+#

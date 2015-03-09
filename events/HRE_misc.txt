@@ -1,0 +1,142 @@
+namespace = hre_misc
+#Peace Talks
+country_event = {
+	id = hre_misc.0
+	title = hre_misc.0.t
+	desc = hre_misc.0.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { religion = catholic }
+				set_country_flag = catholic_league_leader
+				set_variable = { which = vote_for_peace value = 0 }
+			}
+			if = {
+				limit = { religion = protestant }
+				set_country_flag = protestant_league_leader
+				set_variable = { which = vote_for_peace value = 0 }
+			}
+		}
+	}
+	
+	option = {
+		name = hre_misc.0.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				has_idea_group = humanist_ideas
+			}
+		}
+		change_variable = { which = vote_for_peace value = 1 }
+	}
+	
+	option = {
+		name = hre_misc.0.ob
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				has_idea_group = religious_ideas
+			}
+			modifier = {
+				factor = 1.05
+				any_country = {
+					has_country_flag = hre_religion_changed
+					religion = catholic
+				}
+				hre_religion = catholic
+			}
+			modifier = {
+				factor = 1.05
+				any_country = {
+					has_country_flag = hre_religion_changed
+					religion = protestant
+				}
+				hre_religion = protestant
+			}
+		}
+	}
+}
+
+#Religious Peace
+province_event = {
+	id = hre_misc.1
+	title = hre_misc.1.t #Peace of Province Capital
+	desc = hre_misc.1.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		has_province_flag = last_diet_capital
+		any_country = {
+			has_country_flag = catholic_league_leader
+			is_variable_equal = { which = vote_for_peace value = 1 }
+		}
+		any_country = {
+			has_country_flag = protestant_league_leader
+			is_variable_equal = { which = vote_for_peace value = 1 }
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 45
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_hre_religion_treaty = yes
+		}
+	}
+	
+	option = {
+		name = hre_misc.1.oa
+		tooltip = { 
+			set_hre_religion_treaty = yes
+		}
+	}
+}
+
+#Religious Wars keeps on
+province_event = {
+	id = hre_misc.2
+	title = hre_misc.2.t
+	desc = hre_misc.2.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	trigger = {
+		has_province_flag = last_diet_capital
+		any_country = {
+			has_country_flag = catholic_league_leader
+			NOT = { is_variable_equal = { which = vote_for_peace value = 1 } }
+		}
+		any_country = {
+			has_country_flag = protestant_league_leader
+			NOT = { is_variable_equal = { which = vote_for_peace value = 1 } }
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = { has_country_flag = catholic_league_leader }
+				clr_country_flag = catholic_league_leader
+				set_variable = { which = vote_for_peace value = 0 }
+			}
+			every_country = {
+				limit = { has_country_flag = protestant_league_leader }
+				clr_country_flag = protestant_league_leader
+				set_variable = { which = vote_for_peace value = 0 }
+			}
+		}
+	}
+	
+	option = {
+		name = hre_misc.2.oa
+	}
+}

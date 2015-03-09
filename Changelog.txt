@@ -1,0 +1,7 @@
+Main features:
+Diets.
+Reforms are only passed by Diets.
+
+Changelog
+1.0
+First release.

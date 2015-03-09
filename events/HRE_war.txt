@@ -1,0 +1,546 @@
+namespace = hre_war
+#Bohemia calls
+country_event = {
+	id = hre_war.0
+	title = hre_war.0.t
+	desc = hre_war.0.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = BOH
+		ai = yes
+		is_subject = no
+		offensive_war_with = HAB
+		has_country_flag = bohemian_revolt_war
+		has_regency = yes
+		government = monarchy
+		NOT = { has_country_flag = union_with_pal }
+		war_score_against = {
+			who = HAB
+			value = -25
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 12
+	}
+	
+	immediate = {
+		hidden_effect = {
+			PAL = { country_event = { id = hre_war.1 days = 7 } }
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+#Bohemia calls another HRE nation
+country_event = {
+	id = hre_war.1
+	title = hre_war.1.t
+	desc = hre_war.1.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		BOH = {
+			is_subject = no
+			NOT = { has_country_flag = wk_happened }
+		}
+	}
+	
+	option = {
+		name = hre_war.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0.95
+				NOT = { manpower_percentage = 0.7 }
+			}
+			modifier = {
+				factor = 0.8
+				war_exhaustion = 10
+			}
+			modifier = {
+				factor = 0.9
+				is_at_war = yes
+			}
+		}
+		HAB = {
+			country_event = { id = hre_war.2 }
+			tooltip = {
+				add_opinion = {
+					who = FROM
+					modifier = insulted
+				}
+			}
+			tooltip = {
+				add_casus_belli = {	
+					target = FROM
+					type = cb_insult
+					months = 180
+				}
+			}
+		}
+		create_union = BOH
+		set_ruler_flag = joined_bohemia_winter_king
+		set_ruler_flag = the_winter_king
+		BOH = { set_country_flag = wk_happened }
+	}
+	
+	option = {
+		name = hre_war.1.ob
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1.1
+				HAB = { war_exhaustion = 5 }
+			}
+			modifier = {
+				factor = 1.1
+				HAB = { NOT = { manpower_percentage = 0.7 } }
+			}
+		}
+		add_prestige = 5
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = PAL
+				}
+				random_country = {
+					limit = {
+						NOT = { tag = PAL }
+						is_part_of_hre = yes
+						government = monarchy
+						has_regency = no
+						is_subject = no
+						religion = BOH
+						NOT = { alliance_with = HAB }
+					}
+					set_country_flag = winter_king_1
+					country_event = { id = hre_war.1 days = 7 }
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = winter_king_1
+				}
+				random_country = {
+					limit = {
+						NOT = { tag = PAL }
+						is_part_of_hre = yes
+						government = monarchy
+						has_regency = no
+						is_subject = no
+						religion = BOH
+						NOT = { alliance_with = HAB }
+						NOT = { has_country_flag = winter_king_1 }
+					}
+					set_country_flag = winter_king_2
+					country_event = { id = hre_war.1 days = 7 }
+				}
+			}
+			HAB = {
+				country_event = { id = hre_war.3 }
+			}
+		}
+	}
+}
+
+#Austria is told about FROM's accepting the invite
+country_event = {
+	id = hre_war.2
+	title = hre_war.2.t
+	desc = hre_war.2.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		add_opinion = {
+			who = FROM
+			modifier = insulted
+		}
+		add_casus_belli = {	
+			target = FROM
+			type = cb_insult
+			months = 180
+		}
+	}
+}
+
+#Austria is warned about Bohemia's intention
+country_event = {
+	id = hre_war.3
+	title = hre_war.3.t
+	desc = hre_war.3.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hre_war.2.oa
+		add_opinion = {
+			who = FROM
+			modifier = refused_join_war_vs_us
+		}
+	}
+}
+
+#Winter King's supporters
+country_event = {
+	id = hre_war.4
+	title = hre_war.4.t
+	desc = hre_war.4.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	trigger = {
+		is_part_of_hre = yes
+		is_subject = no
+		any_country = {
+			has_ruler_flag = the_winter_king
+			alliance_with = ROOT
+			reverse_has_opinion_modifier = {
+				who = ROOT
+				modifier = in_war_together
+			}
+		}
+		offensive_war_with = HAB
+	}
+	
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = OK
+		set_ruler_flag = joined_bohemia_winter_king
+	}
+}
+
+#Bohemian Revolt Ends (Austria wins)
+country_event = {
+	id = hre_war.5
+	title = hre_war.5.t
+	desc = hre_war.5.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		tag = HAB
+		FROM = {
+			tag = BOH
+			has_country_flag = bohemian_revolt_war
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			BOH = {
+				clr_country_flag = bohemian_revolt_war
+				clr_country_flag = wk_happened
+			}
+			if = {
+				limit = { exists = BOH }
+				inherit = BOH
+			}
+		}
+	}
+	
+	option = {
+		name = hre_war.5.oa
+		every_country = {
+			limit = {
+				has_ruler_flag = joined_bohemia_winter_king
+			}
+			if = {
+				limit = {
+					is_elector = yes
+				}
+				elector = no
+				add_opinion = {
+					who = ROOT
+					modifier = revoke_elector_opinion
+				}
+			}
+			clr_ruler_flag = joined_bohemia_winter_king
+			
+			add_ruler_modifier = { name = hre_imperial_ban }
+			add_prestige = -10
+		}
+		random_country = {
+			limit = { has_ruler_flag = the_winter_king }
+			if = {
+				limit = {
+					tag = PAL
+					any_country = {
+						is_part_of_hre = yes
+						government = monarchy
+						dynasty = PAL
+						is_emperor = no
+					}
+					ai = yes
+				}
+				set_country_flag = pal_banned_bav_inherits
+				custom_tooltip = PALATINATEWILLDIE
+			}
+			clr_ruler_flag = the_winter_king
+			add_legitimacy = -10
+		}
+	}
+}
+
+#Bohemian Revolt Ends (Bohemia wins)
+country_event = {
+	id = hre_war.6
+	title = hre_war.6.t
+	desc = hre_war.6.d
+	picture = RELIGIOUS_WARS_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		tag = BOH
+		FROM = { tag = HAB }
+		has_country_flag = bohemian_revolt_war
+	}
+	
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = bohemian_revolt_war
+			clr_country_flag = wk_happened
+			random_country = {
+				limit = { has_ruler_flag = the_winter_king }
+				add_legitimacy = 10
+				clr_ruler_flag = the_winter_king
+			}
+			HAB = {
+				every_country = {
+					limit = {
+						has_ruler_flag = joined_bohemia_winter_king
+					}
+					if = {
+						limit = {
+							is_elector = yes
+						}
+						elector = no
+						add_opinion = {
+							who = ROOT
+							modifier = revoke_elector_opinion
+						}
+					}
+					add_ruler_modifier = { name = hre_imperial_ban }
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = hre_war.5.oa
+		every_country = {
+			limit = { has_ruler_flag = joined_bohemia_winter_king }
+			clr_ruler_flag = joined_bohemia_winter_king
+			clr_ruler_flag = the_winter_king
+			add_prestige = 10
+		}
+		tooltip = {
+			HAB = {
+				every_country = {
+					limit = { has_ruler_flag = joined_bohemia_winter_king }
+					elector = no
+					add_opinion = {
+						who = ROOT
+						modifier = revoke_elector_opinion
+					}
+					add_ruler_modifier = { name = hre_imperial_ban }
+				}
+			}
+		}
+	}
+}
+
+#Fighting a Major War
+country_event = {
+	id = hre_war.7
+	title = hre_war.7.t
+	desc = hre_war.7.d
+	picture = BATTLE_eventPicture
+	
+	trigger = {
+		is_emperor = yes
+		any_country = {
+			war_with = ROOT
+			OR = {
+				is_great_power = yes
+				has_country_flag = bohemian_revolt_war
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+		modifier = {
+			factor = 1.5
+			NOT = { is_year = 1500 }
+		}
+		modifier = {
+			factor = 0.9
+			any_country = {
+				war_with = ROOT
+				is_great_power = yes
+				any_ally = {
+					is_subject = no
+					war_with = ROOT
+					is_part_of_hre = yes
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		hidden_effect = {
+			every_ally = {
+				limit = {
+					is_at_war = yes
+					is_part_of_hre = yes
+					is_elector = no
+					num_of_cities = 3
+					NOT = { government = republic }
+					is_subject = no
+					reverse_has_opinion_modifier = {
+						who = ROOT
+						modifier = honored_alliance
+					}
+				}
+				set_country_flag = helping_in_major_war_emperor
+			}
+			every_known_country = {
+				limit = {
+					is_subject = no
+					is_part_of_hre = yes
+					OR = {
+						#Twice because Emperor may be at 2 different wars
+						AND = {
+							emperor = { offensive_war_with = PREV }
+							any_ally = {
+								is_great_power = yes
+								is_part_of_hre = no
+								emperor = { offensive_war_with = PREV }
+							}
+						}
+						AND = {
+							emperor = { defensive_war_with = PREV }
+							any_ally = {
+								is_great_power = yes
+								is_part_of_hre = no
+								emperor = { defensive_war_with = PREV }
+							}
+						}
+					}
+				}
+				set_country_flag = allied_with_foreign_enemy
+			}
+		}
+	}
+}
+
+#Emperor declares on member after Landfriede
+country_event = {
+	id = hre_war.9
+	title = hre_war.9.t
+	desc = hre_war.9.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		add_scaled_imperial_influence = -5
+		HLR = { change_variable = { which = empire_member_mood value = -1 } }
+		add_prestige = -10
+		every_country = {
+			limit = {
+				is_part_of_hre = yes
+				NOT = {
+					reverse_has_opinion_modifier = {
+						who = ROOT
+						modifier = honored_alliance
+					}
+					is_at_war = yes
+				}
+			}
+			add_opinion = {
+				who = ROOT
+				modifier = declared_war_on_member
+			}
+		}
+	}
+}
+
+#Emperor declares on Elector
+country_event = {
+	id = hre_war.10
+	title = hre_war.10.t
+	desc = hre_war.10.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		HLR = { change_variable = { which = empire_member_mood value = -1 } }
+		emperor = {
+			add_scaled_imperial_influence = -5
+			add_prestige = -10
+			every_country = {
+				limit = {
+					is_elector = yes
+					NOT = {
+						reverse_has_opinion_modifier = {
+							who = PREV
+							modifier = honored_alliance
+						}
+						is_at_war = yes
+					}
+				}
+				add_opinion = {
+					who = PREV
+					modifier = declared_war_on_elector
+				}
+			}
+			every_country = {
+				limit = {
+					is_part_of_hre = yes
+					is_elector = no
+					NOT = {
+						reverse_has_opinion_modifier = {
+							who = PREV
+							modifier = honored_alliance
+						}
+						is_at_war = yes
+					}
+				}
+				add_opinion = {
+					who = PREV
+					modifier = declared_war_on_member
+				}
+			}
+		}
+	}
+}

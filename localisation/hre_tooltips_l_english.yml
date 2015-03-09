@@ -1,0 +1,54 @@
+l_english:
+ #TOOLTIP
+ #Events
+ CHECKING_SPIRITUAL: "§YThe search for a Spiritual Elector begins...§!"
+ CHECKING_SPIRITUAL_PLURAL: "§YThe search for some Spiritual Electors begins...§!"
+ CHECKING_LAY: "§YThe search for a Lay Elector begins...§!"
+ CHECKING_LAY_PLURAL: "§YThe search for some Lay Electors begins...§!"
+ TOTAL_LAY: "There are [HLR.num_of_lay_electors.GetValue] Lay Electors in the [HLR.GetName], there should be at least [HLR.max_lay.GetValue] of them."
+ TOTAL_SPIRITUAL: "There are [HLR.num_of_spiritual_electors.GetValue] Spiritual Electors in the [HLR.GetName], there should be at least [HLR.max_spiritual.GetValue] of them."
+ PALATINATEWILLDIE: "§Y[PAL.GetName] will be inherited by one of its dynasty members after its current ruler's death.§!"
+ #Diplomatic Actions
+ ALLOWEDELECTORATE: "§RWe aren't allowed to Grant Electorate right now."
+ ALLOWEDELECTORATE_imperial_ban: "§R[From.Monarch.GetName] has been banned due to [From.Monarch.GetHerHisCap] actions against the Empire or [Root.Monarch.GetName] [Root.Monarch.GetHerselfHimself], therefore, [From.Monarch.GetSheHe] cannot become an Imperial Elector during [From.Monarch.GetHerHisCap] lifetime.§!"
+ spokesman_diet_tooltip: "§Yis the Spokesman of the current Diet.§!"
+ ALLOWEDELECTORATE_same_dynasty: "§R[From.Monarch.GetName] appears to share [From.Monarch.GetHerHisCap] dynasty with an Elector or [Root.Monarch.GetName] [Root.Monarch.GetHerselfHimself], therefore, [From.Monarch.GetSheHe] cannot become an Imperial Elector.§!"
+ landfriede_event_no_aggression_war: "§RAfter the Ewiger Landfriede has passed, members of the Empire cannot declare war on another members of the Empire without a proper Casus Belli.§!"
+ DIET1495: "§RThis country is part of a special event right now.§!"
+ diet_no_league_war: "§RIt is not possible to declare war upon the Emperor while the Diet is in session and we're the [ROOT.Religion.GetName] League's leader.§!"
+ diet_no_emperor_war_on_member: "§RThe Emperor is not allowed to declare war upon a member of the Empire while a Diet is in session.§!"
+ #triggered modifier
+ landfriede_member_custom: "Ewiger Landfriede"
+ desc_landfriede_member_custom: "The Emperor has declared peace throughout the Empire.\n§YAfter the Ewiger Landfriede has passed, members of the Empire cannot declare war upon another members of the Empire without a proper Casus Belli.§!"
+ #HRE Variables tooltips
+ num_of_hre_electors_tooltip: "[HLR.num_of_hre_electors.GetName: §G[HLR.num_of_hre_electors.GetValue]§!" #Current Electors
+ num_of_hre_electors_badtooltip: "[HLR.num_of_hre_electors.GetName: §R[HLR.num_of_hre_electors.GetValue]§!" #Current Electors
+ hre_num_of_electors_tooltip: "[HLR.hre_num_of_electors.GetName]: §Y[HLR.hre_num_of_electors.GetValue]§!" #MAX Electors
+ max_lay_tooltip: "[HLR.max_lay.GetName]: §Y[HLR.max_lay.GetValue]§!"
+ num_of_lay_electors_tooltip: "[HLR.num_of_lay_electors.GetName]: §G[HLR.num_of_lay_electors.GetValue]§!"
+ num_of_lay_electors_badtooltip: "[HLR.num_of_lay_electors.GetName]: §R[HLR.num_of_lay_electors.GetValue]§!"
+ max_spiritual_tooltip: "[HLR.max_spiritual.GetName]: §Y[HLR.max_spiritual.GetValue]§!"
+ num_of_spiritual_electors_tooltip: "[HLR.num_of_spiritual_electors.GetName]: §G[HLR.num_of_spiritual_electors.GetValue]§!"
+ num_of_spiritual_electors_badtooltip: "[HLR.num_of_spiritual_electors.GetName]: §R[HLR.num_of_spiritual_electors.GetValue]§!"
+ hre_opinion_reichsregiment_tooltip: "[HLR.hre_opinion_reichsregiment.GetName]: §Y[HLR.hre_opinion_reichsregiment.GetValue]§!"
+ hre_opinion_penny_tooltip: "[HLR.hre_opinion_penny.GetName]: §Y[HLR.hre_opinion_penny.GetValue]§!"
+ empire_member_mood_tooltip: "[HLR.empire_member_mood.GetName]: §Y[HLR.empire_member_mood.GetValue]§!"
+ TOTAL_PENNY_COLLECTED: "[HLR.empire_common_penny.GetName]: §Y[HLR.empire_common_penny.GetValue]¤§!"
+ #Events
+ REICHSREGIMENT_PASSED: "The Reichsregiment reform has passed."
+ LANDFRIEDE_PASSED: "The Ewiger Landfriede reform has passed"
+ CHAMBER_PASSED: "The Imperial Chamber reform has passed"
+ PENNY_PASSED: "The Common Penny reform has passed"
+ CIRCLE_PASSED: "The Imperial Circle reforms has passed"
+ HEREDITARY_PASSED: "The Hereditary Empire reform has passed"
+ PENNY_REVOKED: "The Common Penny reform has been revoked"
+ REICHSREGIMENT_REVOKED: "The Reichsregiment reform has been revoked."
+ MODIFIER_EXPIRES_ON_DEATH: "§YThis modifier expires on the ruler's death.§!"
+ tooltip_war_duration: "the end of the war."
+ reichsregiment_vote_tooltip: "Reichsregiment reform"
+ landfriede_vote_tooltip: "Ewiger Landfriede reform"
+ chamber_vote_tooltip: "Imperial Chamber reform"
+ revokation_penny_vote_tooltip: "The revokation of the Common Penny reform"
+ revokation_reichsregiment_vote_tooltip: "The revokation of the Reichsregiment reform"
+ hereditary_empire_vote_tooltip: "The Hereditary Empire reform"
+ PROVINCE_CLAIMED: "§Yis claimed.§!"

@@ -1,0 +1,550 @@
+namespace = hre_electors
+#Elector in PU
+country_event = {
+	id = hre_electors.1
+	title = hre_electors.1.t
+	desc = hre_electors.1.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		is_elector = yes
+		is_lesser_in_union = yes
+		is_at_war = no
+		overlord = {
+			is_at_war = no
+			is_elector = no
+			is_part_of_hre = yes
+			NOT = { has_country_flag = elector_through_pu }
+			NOT = { has_ruler_modifier = hre_imperial_ban }
+		}
+	}
+	
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = OK
+		elector = no
+		set_country_flag = original_elector_pu
+		overlord = {
+			elector = yes
+			hidden_effect = {
+				set_country_flag = elector_through_pu
+				add_opinion = {
+					who = PREV
+					modifier = elector_through_pu_with
+				}
+				add_prestige = 10
+				if = {
+					limit = { ai = no }
+					country_event = { id = hre_electors.5 }
+				}
+			}
+		}
+	}
+}
+
+#Elector Restored
+country_event = {
+	id = hre_electors.3
+	title = hre_electors.3.t
+	desc = hre_electors.3.d
+	picture = HRE_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		is_elector = yes
+		is_at_war = no
+		has_country_flag = elector_through_pu
+		any_known_country = {
+			reverse_has_opinion_modifier = {
+				modifier = elector_through_pu_with
+				who = ROOT
+			}
+			has_country_flag = original_elector_pu
+			has_regency = no
+			is_subject = no
+			is_elector = no
+		}
+		OR = {
+			hre_religion_treaty = yes
+			hre_religion_locked = yes
+			hre_leagues_enabled = no
+		}
+	}
+	
+	option = {
+		name = OK
+		elector = no
+		clr_country_flag = elector_through_pu
+		hidden_effect = {
+			random_country = {
+				limit = {
+					is_elector = no
+					has_country_flag = original_elector_pu
+					reverse_has_opinion_modifier = {
+						who = ROOT
+						modifier = elector_through_pu_with
+					}
+				}
+				reverse_remove_opinion = {
+					who = ROOT
+					modifier = elector_through_pu_with
+				}
+				elector = yes
+				clr_country_flag = original_elector_pu
+			}
+		}
+	}
+}
+
+#Electorate Lost (Major held the PU 50 years)
+country_event = {
+	id = hre_electors.4
+	title = hre_electors.4.t
+	desc = hre_electors.4.d
+	picture = HRE_eventPicture
+	
+	trigger = {
+		is_elector = yes
+		has_country_flag = elector_through_pu
+		any_subject_country = {
+			has_country_flag = original_elector_pu
+			years_in_union_under = {
+				who = ROOT
+				years = 50
+			}
+		}
+	}
+	
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = hre_electors.4.oa
+		trigger = {
+			NOT = { months_of_ruling = 600 }
+		}
+		hidden_effect = {
+			clr_country_flag = elector_through_pu
+			random_country = {
+				limit = {
+					junior_union_with = ROOT
+					years_in_union_under = {
+						who = ROOT
+						years = 50
+					}
+					has_country_flag = original_elector_pu
+				}
+				clr_country_flag = original_elector_pu
+				add_prestige = 10
+				if = {
+					limit = { ai = no }
+					country_event = { id = hre_electors.7 }
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = hre_electors.4.ob
+		trigger = {
+			months_of_ruling = 600
+		}
+		hidden_effect = {
+			clr_country_flag = elector_through_pu
+			random_country = {
+				limit = {
+					junior_union_with = ROOT
+					years_in_union_under = {
+						who = ROOT
+						years = 50
+					}
+					has_country_flag = original_elector_pu
+				}
+				clr_country_flag = original_elector_pu
+				add_prestige = 10
+				if = {
+					limit = { ai = no }
+					country_event = { id = hre_electors.7 }
+				}
+			}
+		}
+	}
+}
+
+#Electorate Granted (Major in Union gets notified)
+country_event = {
+	id = hre_electors.5
+	title = hre_electors.5.t
+	desc = hre_electors.5.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		tooltip = { add_prestige = 10 }
+	}
+}
+
+#Major in Union becomes the 'Permanent' Elector
+country_event = {
+	id = hre_electors.7
+	title = hre_electors.7.t
+	desc = hre_electors.7.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		tooltip = { add_prestige = 10 }
+	}
+}
+
+#Elector becomes a Republic
+country_event = {
+	id = hre_electors.8
+	title = hre_electors.8.t
+	desc = hre_electors.8.d
+	picture = HRE_eventPicture
+	
+	trigger = {
+		is_emperor = yes
+		any_country = {
+			is_elector = yes
+			government = republic
+			is_at_war = no
+		}
+		is_at_war = no
+	}
+	
+	mean_time_to_happen = { months = 12 }
+	
+	option = {
+		name = OK
+		every_country = {
+			limit = {
+				is_elector = yes
+				government = republic
+			}
+			tooltip = {
+				add_opinion = {
+					who = ROOT
+					modifier = revoke_elector_opinion
+				}
+			}
+			elector = no
+			country_event = { id = hre_electors.9 days = 3 }
+		}
+		hidden_effect = {
+			if = {
+				limit = { is_at_war = no }
+				country_event = { id = hre_electors_search.1 days = 10 }
+			}
+			if = {
+				limit = { is_at_war = yes }
+				random_elector = { country_event = { id = hre_electors_search.1 days = 10 } }
+			}
+		}
+	}
+}
+
+#Elector gets notified about it
+country_event = {
+	id = hre_electors.9
+	title = hre_electors.9.t
+	desc = hre_electors.9.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		tooltip = {
+			elector = no
+		}
+		add_opinion = {
+			who = FROM
+			modifier = revoke_elector_opinion
+		}
+	}
+}
+
+#Handling Palatinate's Ban
+country_event = {
+	id = hre_electors.10
+	title = hre_electors.10.t
+	desc = hre_electors.10.d
+	picture = HRE_eventPicture
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+	
+	trigger = {
+		tag = PAL
+		ai = yes
+		is_at_war = no
+		has_country_flag = pal_banned_bav_inherits
+		government = monarchy
+		any_country = {
+			is_part_of_hre = yes
+			government = monarchy
+			dynasty = ROOT
+			is_emperor = no
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = pal_banned_bav_inherits
+			if = {
+				limit = {
+					NOT = { emperor = { religion = ROOT } }
+					hre_religion_treaty = no
+				}
+				random_country = {
+					limit = {
+						government = monarchy
+						is_part_of_hre = yes
+						dynasty = ROOT
+						is_emperor = no
+						emperor = { religion = PREV }
+					}
+					set_country_flag = will_inherit_pal
+				}
+				set_country_flag = pal_inherited_30yw
+				if = {
+					limit = { PAL = { religion = catholic } }
+					set_country_flag = hre_protestant
+				}
+				if = {
+					limit = { PAL = { religion = protestant } }
+					set_country_flag = hre_catholic
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						emperor = { religion = ROOT }
+						hre_religion_treaty = yes
+					}
+				}
+				set_country_flag = pal_pardoned
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		if = {
+			limit = { has_country_flag = pal_inherited_30yw }
+			hidden_effect = {
+				every_province = {
+					limit = {
+						owned_by = PAL
+						is_core = PAL
+					}
+					set_province_flag = pal_original
+				}
+			}
+			random_country = {
+				limit = { has_country_flag = will_inherit_pal }
+				inherit = PAL
+				if = {
+					limit = { is_elector = no }
+					elector = yes
+				}
+				if = {
+					limit = { is_elector = yes }
+					set_country_flag = was_elector_before_pal
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = pal_pardoned }
+			elector = yes
+			clr_country_flag = pal_pardoned
+		}
+	}
+}
+
+#Handling Palatinate's Ban, pt.2 (Peace of Westphalia)
+country_event = {
+	id = hre_electors.11
+	title = hre_electors.11.t
+	desc = hre_electors.11.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+	
+	trigger = {
+		is_at_war = no
+		is_part_of_hre = yes
+		ai = yes
+		has_country_flag = will_inherit_pal
+		NOT = {
+			had_country_flag = {
+				flag = will_inherit_pal
+				days = 1095
+			}
+		}
+		OR = {
+			AND = {
+				hre_religion = catholic
+				PAL = { has_country_flag = hre_protestant }
+			}
+			AND = {
+				hre_religion = protestant
+				PAL = { has_country_flag = hre_catholic }
+			}
+			hre_religion_treaty = yes
+		}
+	}
+	
+	option = {
+		name = OK
+		if = {
+			limit = {
+				is_elector = yes
+				NOT = { has_country_flag = was_elector_before_pal }
+			}
+			elector = no
+		}
+		every_province = {
+			limit = {
+				has_province_flag = pal_original
+				owned_by = ROOT
+			}
+			clr_province_flag = pal_original
+			cede_province = PAL
+		}
+		clr_country_flag = will_inherit_pal
+		PAL = {
+			elector = yes
+			clr_country_flag = pal_inherited_30yw
+		}
+	}
+}
+
+#Giving Electorate to worthy allies
+country_event = {
+	id = hre_electors.12
+	title = hre_electors.12.t
+	desc = hre_electors.12.d
+	picture = HRE_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_emperor = yes
+		any_ally = {
+			is_part_of_hre = yes
+			has_country_flag = helping_in_major_war_emperor
+			is_elector = no
+			OR = {
+				religion = ROOT
+				hre_religion_treaty = yes
+			}
+			OR = {
+				government = monarchy
+				AND = {
+					government = theocracy
+					HLR = { check_variable = { which = max_spiritual value = 1 } }
+				}
+			}
+			NOT = { dynasty = ROOT }
+		}
+		NOT = { HLR = { is_variable_equal = { which = hre_num_of_electors value = 9 } } }
+	}
+	
+	option = {
+		name = OK
+		random_country = {
+			limit = { has_country_flag = helping_in_major_war_emperor }
+			add_prestige = 5
+			elector = yes
+			if = {
+				limit = { government = monarchy }
+				HLR = { change_variable = { which = num_of_lay_electors value = 1 } }
+			}
+			if = {
+				limit = { government = theocracy }
+				HLR = { change_variable = { which = num_of_spiritual_electors value = 1 } }
+			}
+			if = {
+				limit = { government = theocracy }
+				HLR = { change_variable = { which = max_spiritual value = 1 } }
+			}
+			if = {
+				limit = { government = monarchy }
+				HLR = { change_variable = { which = max_lay value = 1 } }
+			}
+		}
+		HLR = { change_variable = { which = hre_num_of_electors value = 1 } }
+		hidden_effect = {
+			every_country = {
+				limit = { has_country_flag = helping_in_major_war_emperor }
+				clr_country_flag = helping_in_major_war_emperor
+			}
+		}
+	}
+}
+
+#Imperial Ban
+country_event = {
+	id = hre_electors.13
+	title = hre_electors.13.t
+	desc = hre_electors.13.d
+	picture = HRE_eventPicture
+	
+	trigger = {
+		has_country_flag = allied_with_foreign_enemy
+		is_part_of_hre = yes
+		is_subject = no
+		is_at_war = no
+	}
+	
+	mean_time_to_happen = {
+		months = 3
+	}
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					BOH = {
+						NOT = { war_with = HAB }
+						has_country_flag = bohemian_revolt_war
+					}
+				}
+				BOH = { clr_country_flag = bohemian_revolt_war }
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		if = {
+			limit = { is_elector = yes }
+			elector = no
+			if = {
+				limit = { government = monarchy }
+				HLR = { change_variable = { which = num_of_lay_electors value = -1 } }
+			}
+			if = {
+				limit = { government = theocracy }
+				HLR = { change_variable = { which = num_of_spiritual_electors value = -1 } }
+			}
+		}
+		clr_country_flag = allied_with_foreign_enemy
+		add_ruler_modifier = { name = hre_imperial_ban }
+	}
+}
+	
+#

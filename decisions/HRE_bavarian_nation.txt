@@ -1,0 +1,60 @@
+country_decisions = {
+	bavarian_nation = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			primary_culture = bavarian
+			NOT = { exists = BAV }
+			NOT = { tag = PAP }
+			NOT = { tag = HLR }
+			is_colonial_nation = no
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					num_of_cities = 5
+				}
+			}			
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+		}
+		allow = {
+			is_subject = no
+			is_at_war = no
+			owns_core_province = 64	# 
+			owns_core_province = 65	# 
+			owns_core_province = 68	# 
+		}
+		effect = {
+			change_tag = BAV
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			german_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					culture = bavarian
+				}
+				add_claim = BAV
+			}
+			add_prestige = 25
+			BAV = {
+				set_capital = 65 # 
+			}
+			swap_free_idea_group = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

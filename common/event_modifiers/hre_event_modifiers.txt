@@ -1,0 +1,15 @@
+hre_imperial_ban = {
+	prestige = -0.7 #to counter +0.2 from the Member modifier
+	legitimacy = -0.5
+	picture = "prestige_decay"
+}
+
+bohemian_local_church = {
+	local_autonomy = 0.15
+	picture = tolerance_own
+}
+
+common_penny_army_modifier = {
+	mercenary_cost = -0.25
+	picture = "merc_maintenance_modifier"
+}

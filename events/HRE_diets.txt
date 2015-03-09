@@ -1,0 +1,1308 @@
+namespace = hre_reforms
+#################################################
+#Diet of Worms
+#################################################
+country_event = {
+	id = hre_reforms.0
+	title = hre_reforms.0.t
+	desc = hre_reforms.0.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		hre_size = 1
+		OR = {
+			is_emperor = yes
+			AND = {
+				is_elector = yes
+				emperor = { is_at_war = yes }
+			}
+		}
+		NOT = { has_global_flag = diet_in_session }
+		num_of_electors = 7
+		is_at_war = no
+		is_year = 1495
+		any_country = {
+			is_part_of_hre = yes
+			is_emperor = no
+			is_at_war = no
+			is_subject = no
+		}
+		NOT = { has_global_flag = had_diet1495 }
+	}
+	
+	mean_time_to_happen = {
+		months = 6
+	}
+	
+	immediate = {
+		set_global_flag = had_diet
+		set_global_flag = diet_in_session
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = imperial_reform_reichsregiment value = -1 }
+				set_variable = { which = imperial_reform_landfriede value = -1 }
+				set_variable = { which = imperial_reform_chamber value = -1 }
+				set_variable = { which = imperial_reform_penny value = -1 }
+			}
+			set_global_flag = had_diet1495
+			every_country = {
+				limit = {
+					is_part_of_hre = yes
+					is_lesser_in_union = no
+				}
+				country_event = { id = hre_reforms.1 days = 7 random = 2 }
+			}
+			#Chancellor
+			if = {
+				limit = {
+					NOT = { any_country = { has_country_flag = spokesman_diet } }
+				}
+				random_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_at_war = no
+						is_subject = no
+						has_regency = no
+					}
+					set_country_flag = spokesman_diet
+					country_event = { id = hre_reforms.7 days = 90 random = 2 } #Results
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+#Diet of Worms, Reichsregiment
+country_event = {
+	id = hre_reforms.1
+	title = hre_reforms.1.t
+	desc = hre_reforms.1.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = { country_event = { id = hre_reforms.2 days = 15 random = 2 } }
+	}
+	
+	option = { #Favor
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_emperor = yes
+			}
+			modifier = {
+				factor = 2
+				is_part_of_hre = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_reichsregiment value = 1 } }
+	}
+
+	option = { #Against
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+		}
+		HLR = { change_variable = { which = imperial_reform_reichsregiment value = -1 } }
+	}
+}
+
+#Diet of Worms, Landfriede
+country_event = {
+	id = hre_reforms.2
+	title = hre_reforms.2.t
+	desc = hre_reforms.2.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = { country_event = { id = hre_reforms.3 days = 15 random = 2 } }
+	}
+	
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				any_known_country = {
+					is_part_of_hre = yes
+					num_of_cities = ROOT
+					has_casus_belli_against = ROOT
+				}
+			}
+			modifier = {
+				factor = 2
+				emperor = { has_casus_belli_against = ROOT }
+			}
+			modifier = {
+				factor = 2
+				personality = ai_diplomat
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_landfriede value = 1 } }
+	}
+
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				any_province = {
+					OR = {
+						is_claim = ROOT
+						is_core = ROOT
+					}
+					is_part_of_hre = yes
+					owner = { is_part_of_hre = yes }
+					NOT = { owned_by = ROOT }
+				}
+			}
+			modifier = {
+				factor = 2
+				personality = ai_militarist
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_landfriede value = -1 } }
+	}
+}
+
+#Diet of Worms, Imperial Chamber
+country_event = {
+	id = hre_reforms.3
+	title = hre_reforms.3.t
+	desc = hre_reforms.3.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = { hidden_effect = { country_event = { id = hre_reforms.4 days = 15 random = 2 } } }
+	
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_elector = yes
+			}
+			modifier = {
+				factor = 0
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_chamber value = 1 } }
+	}
+		
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_chamber value = -1 } }
+	}
+}
+
+#Diet of Worms, Common Penny
+country_event = {
+	id = hre_reforms.4
+	title = hre_reforms.4.t
+	desc = hre_reforms.4.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = yes
+			}
+		}
+		if = {
+			limit = { is_emperor = yes }
+			set_global_flag = emperor_backed_penny
+		}
+		HLR = { change_variable = { which = imperial_reform_penny value = 1 } }
+	}
+	
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+		}
+		HLR = { change_variable = { which = imperial_reform_penny value = -1 } }
+	}
+}
+#################################################
+#Results
+#################################################
+country_event = {
+	id = hre_reforms.7
+	title = hre_reforms.7.t
+	desc = hre_reforms.7.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			custom_tooltip = REICHSREGIMENT_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			custom_tooltip = LANDFRIEDE_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			custom_tooltip = CHAMBER_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			custom_tooltip = PENNY_PASSED
+		}
+	}
+	
+	option = {
+		name = OK
+		ai_chance = { factor = 90 }
+		emperor = { country_event = { id = hre_reforms.8 } }
+	}
+}
+
+#Emperor gets notified
+country_event = {
+	id = hre_reforms.8
+	title = hre_reforms.7.t #Same as before
+	desc = hre_reforms.7.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			custom_tooltip = PENNY_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			custom_tooltip = REICHSREGIMENT_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			custom_tooltip = LANDFRIEDE_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			custom_tooltip = CHAMBER_PASSED
+		}
+	}
+	
+	#Pass it
+	option = {
+		name = hre_reforms.8.oa
+		trigger = {
+			OR = {
+				HLR = { check_variable = { which = imperial_reform_penny value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+			}
+		}
+		ai_chance = {
+			factor = 90
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			set_global_flag = penny_passed
+			hidden_effect = { HLR = { set_variable = { which = hre_opinion_penny value = 0 } } }
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			set_global_flag = reichsregiment_passed
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			#hidden_effect = { internal_hre_cb = no }
+			set_global_flag = landfriede_passed
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			set_global_flag = chamber_passed
+		}
+		every_country = {
+			limit = {
+				ai = no
+				NOT = { tag = ROOT }
+			}
+			country_event = { id = hre_reforms.10 }
+		}
+		hidden_effect = {
+			random_country = {
+				limit = { has_country_flag = spokesman_diet }
+				clr_country_flag = spokesman_diet
+			}
+			clr_global_flag = diet_in_session
+		}
+	}
+	
+	#Denounce it
+	option = {
+		name = hre_reforms.8.ob
+		trigger = {
+			OR = {
+				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+			}
+			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			has_global_flag = emperor_backed_penny
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -1
+		add_prestige = -10
+		add_imperial_influence = -10
+		every_country = {
+			limit = {
+				is_part_of_hre = yes
+				NOT = { is_subject_of = ROOT }
+			}
+			add_opinion = {
+				who = ROOT
+				modifier = emperor_denies_reforms
+			}
+			custom_tooltip = MODIFIER_EXPIRES_ON_DEATH
+		}
+		FROM = { country_event = { id = hre_reforms.9 } }
+	}
+	
+	#It failed
+	option = {
+		name = hre_reforms.8.oc
+		trigger = {
+			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+		}
+		hidden_effect = {
+			FROM = {
+				country_event = { id = hre_reforms.11 }
+			}
+			random_country = {
+				limit = { has_country_flag = spokesman_diet }
+				clr_country_flag = spokesman_diet
+			}
+			clr_global_flag = diet_in_session
+		}
+	}
+}
+
+#Emperor denies it
+country_event = {
+	id = hre_reforms.9
+	title = hre_reforms.9.t
+	desc = hre_reforms.9.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		HLR = { set_variable = { which = imperial_reform_penny value = 0 } }
+		emperor = { country_event = { id = hre_reforms.8 } }
+	}
+}
+
+#Human HRE players see the reforms passed
+country_event = {
+	id = hre_reforms.10
+	title = hre_reforms.7.t
+	desc = hre_reforms.7.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			custom_tooltip = PENNY_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			custom_tooltip = REICHSREGIMENT_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			custom_tooltip = LANDFRIEDE_PASSED
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			custom_tooltip = CHAMBER_PASSED
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+#HRE votes failed
+country_event = {
+	id = hre_reforms.11
+	title = hre_reforms.11.t
+	desc = hre_reforms.11.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = OK
+	}
+}
+
+#HREmperor dies with 'emperor denies reforms' modifier
+country_event = {
+	id = hre_reforms.12
+	title = hre_reforms.12.t
+	desc = hre_reforms.12.d
+	picture = GOOD_WITH_MONARCH_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		any_country = {
+			has_opinion_modifier = {
+				who = ROOT
+				modifier = emperor_denies_reforms
+			}
+		}
+	}
+	
+	option = {
+		name = hre_reforms.12.oa
+		every_country = {
+			limit = {
+				has_opinion_modifier = {
+					who = ROOT
+					modifier = emperor_denies_reforms
+				}
+			}
+			remove_opinion = {
+				who = ROOT
+				modifier = emperor_denies_reforms
+			}
+		}
+	}
+}
+
+#################################################
+#Generic Diet	todo: external menaces (France, Ottomans, etc)
+#################################################
+province_event = {
+	id = hre_reforms.13
+	title = hre_reforms.13.t
+	desc = hre_reforms.13.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	major = yes
+	#make an event to tell every player about its agenda
+
+	trigger = {
+		hre_size = 1
+		NOT = { has_global_flag = diet_in_session }
+		NOT = { has_province_flag = last_diet_capital }
+		OR = {
+			had_global_flag = { flag = had_diet days = 1000 }
+			NOT = { has_global_flag = had_diet }
+		}
+		has_global_flag = had_diet1495
+		continent = europe
+		is_part_of_hre = yes
+		is_capital = yes
+		emperor = {
+			is_in_league_war = no
+			has_regency = no
+			NOT = {
+				revolution_target = {
+					war_with = PREV
+				}
+			}
+		}
+		owner = {
+			is_emperor = no
+			is_at_war = no
+			is_part_of_hre = yes
+		}
+		any_country = {
+			is_part_of_hre = yes
+			is_emperor = no
+			is_at_war = no
+			is_subject = no
+			has_regency = no
+		}
+		OR = {
+			NOT = { has_global_flag = landfriede_passed }
+			NOT = { has_global_flag = chamber_passed }
+			had_global_flag = { flag = reichsregiment_passed days = 1000 }
+			had_global_flag = { flag = penny_passed days = 1000 }
+			AND = {
+				is_year = 1700
+				#check_variable = { which = total_emperors_history value = 3 }
+				NOT = { has_global_flag = hereditary_hre }
+			}
+			AND = {
+				has_dlc = "Art of War"
+				hre_leagues_enabled = yes
+				hre_religion_locked = no
+				hre_religion_treaty = no
+			}
+			any_country = {
+				is_great_power = yes
+				is_part_of_hre = no
+				NOT = { emperor = { alliance_with = PREV } }
+				num_of_owned_provinces_with = {
+					value = 3
+					is_part_of_hre = yes
+				}
+			}
+			any_country = {
+				is_great_power = yes
+				is_part_of_hre = no
+				NOT = { emperor = { alliance_with = PREV } }
+				any_owned_province = {
+					is_part_of_hre = yes
+				}
+				any_neighbor_country = {
+					is_part_of_hre = yes
+				}
+			}
+			any_country = {
+				is_great_power = yes
+				is_part_of_hre = no
+				NOT = { emperor = { alliance_with = PREV } }
+				emperor = { is_neighbor_of = PREV }
+				OR = {
+					emperor = { is_rival = PREV }
+					emperor = { is_enemy = PREV }
+				}
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 60
+	}
+	
+	immediate = {
+		set_global_flag = diet_in_session
+		clr_global_flag = had_diet
+		# make a check for every reform
+		if = {
+			limit = { NOT = { has_global_flag = reichsregiment_passed } }
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_reichsregiment value = -1 } } }
+			custom_tooltip = reichsregiment_vote_tooltip
+		}
+		if = {
+			limit = { NOT = { has_global_flag = landfriede_passed } }
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_landfriede value = -1 } } }
+			custom_tooltip = landfriede_vote_tooltip
+		}
+		if = {
+			limit = { NOT = { has_global_flag = chamber_passed } }
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_chamber value = -1 } } }
+			custom_tooltip = chamber_vote_tooltip
+		}
+		# try to remove common penny
+		if = {
+			limit = {
+				had_global_flag = { flag = penny_passed days = 1000 }
+				NOT = { HLR = { check_variable = { which = hre_opinion_penny value = 1 } } }
+			}
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_penny value = -1 } } }
+			custom_tooltip = revokation_penny_vote_tooltip
+		}
+		#try to remove reichsregiment
+		if = {
+			limit = {
+				had_global_flag = { flag = reichsregiment_passed days = 1000 }
+				NOT = { HLR = { check_variable = { which = hre_opinion_reichsregiment value = 1 } } }
+			}
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_reichsregiment value = -1 } } }
+			custom_tooltip = revokation_reichsregiment_vote_tooltip
+		}
+		# later on, try to get Erb Kaisertum
+		if = {
+			limit = {
+				is_year = 1700
+				#todo: change this later, check for something important
+				NOT = { has_global_flag = hereditary_hre }
+			}
+			set_global_flag = hereditary_hre_vote
+			hidden_effect = { HLR = { set_variable = { which = imperial_reform_inheritable value = -1 } } }
+			custom_tooltip = hereditary_empire_vote_tooltip
+		}
+		hidden_effect = {
+			every_province = {
+				limit = { has_province_flag = last_diet_capital }
+				clr_province_flag = last_diet_capital
+			}
+			#Chancellor
+			if = {
+				limit = {
+					NOT = { any_country = { has_country_flag = spokesman_diet } }
+				}
+				random_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_at_war = no
+						is_subject = no
+						has_regency = no
+					}
+					set_country_flag = spokesman_diet
+					country_event = { id = hre_reforms.19 days = 90 random = 2 } #Results
+				}
+			}
+			#Internal Threats
+			if = {
+				limit = {
+					has_dlc = "Art of War" #It won't work without it, so...
+					hre_leagues_enabled = yes
+					hre_religion_locked = no
+					hre_religion_treaty = no
+					any_country = {
+						religion = catholic
+						is_league_leader = yes
+						is_part_of_hre = yes
+					}
+					any_country = {
+						religion = protestant
+						is_league_leader = yes
+						is_part_of_hre = yes
+					}
+				}
+				random_country = {
+					limit = {
+						religion = catholic
+						is_league_leader = yes
+					}
+					random_country = {
+						limit = {
+							religion = protestant 
+							is_league_leader = yes
+						}
+						country_event = { id = hre_misc.0 days = 3 }
+					}
+				}
+				random_country = {
+					limit = {
+						religion = protestant
+						is_league_leader = yes
+					}
+					random_country = {
+						limit = {
+							religion = catholic
+							is_league_leader = yes
+						}
+						country_event = { id = hre_misc.0 days = 3 }
+					}
+				}
+			}
+			#External Threats
+			if = {
+				limit = {
+					any_country = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						num_of_owned_provinces_with = {
+							value = 3
+							is_part_of_hre = yes
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						num_of_owned_provinces_with = {
+							value = 3
+							is_part_of_hre = yes
+						}
+					}
+					set_country_flag = hre_menace_1
+				}
+			}
+			if = {
+				limit = {
+					any_country = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						any_owned_province = {
+							is_part_of_hre = yes
+						}
+						any_neighbor_country = {
+							is_part_of_hre = yes
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						any_owned_province = {
+							is_part_of_hre = yes
+						}
+						any_neighbor_country = {
+							is_part_of_hre = yes
+						}
+					}
+					set_country_flag = hre_menace_2
+				}
+			}
+			if = {
+				limit = {
+					any_country = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						emperor = { is_neighbor_of = PREV }
+						OR = {
+							emperor = { is_rival = PREV }
+							emperor = { is_enemy = PREV }
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						is_great_power = yes
+						is_part_of_hre = no
+						NOT = { emperor = { alliance_with = PREV } }
+						emperor = { is_neighbor_of = PREV }
+						OR = {
+							emperor = { is_rival = PREV }
+							emperor = { is_enemy = PREV }
+						}
+					}
+				}
+				set_country_flag = hre_menace_3
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		hidden_effect = {
+			set_global_flag = had_diet
+			set_province_flag = last_diet_capital
+			if = {
+				limit = { had_global_flag = { flag = penny_passed days = 1000 } }
+				every_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_lesser_in_union = no
+					}
+					country_event = { id = hre_reforms.14 days = 7 random = 2 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = penny_passed }
+					NOT = { had_global_flag = { flag = reichsregiment_passed days = 1000 } }
+				}
+				every_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_lesser_in_union = no
+					}
+					country_event = { id = hre_reforms.15 days = 7 random = 2 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = penny_passed }
+					has_global_flag = reichsregiment_passed
+					NOT = { had_global_flag = { flag = reichsregiment_passed days = 1000 } }
+					NOT = { has_global_flag = landfriede_passed }
+				}
+				every_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_lesser_in_union = no
+					}
+					country_event = { id = hre_reforms.16 days = 7 random = 2 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = penny_passed }
+					has_global_flag = reichsregiment_passed
+					has_global_flag = landfriede_passed
+					NOT = { has_global_flag = chamber_passed }
+				}
+				every_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_lesser_in_union = no
+					}
+					country_event = { id = hre_reforms.17 days = 7 random = 2 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = penny_passed }
+					has_global_flag = reichsregiment_passed
+					has_global_flag = landfriede_passed
+					has_global_flag = chamber_passed
+					has_global_flag = hereditary_hre_vote
+				}
+				every_country = {
+					limit = {
+						is_part_of_hre = yes
+						is_lesser_in_union = no
+					}
+					country_event = { id = hre_reforms.18 days = 7 random = 2 }
+				}
+			}
+		}
+	}
+}
+
+#Generic - Revoke Penny
+##It actually tries to "pass" it again
+country_event = {
+	id = hre_reforms.14
+	title = hre_reforms.4.t
+	desc = hre_reforms.14.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_global_flag = reichsregiment_passed }
+						had_global_flag = { flag = reichsregiment_passed days = 1000 }
+					}
+				}
+				country_event = { id = hre_reforms.15 days = 7 random = 2 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { had_global_flag = { flag = reichsregiment_passed days = 1000 } }
+						NOT = { has_global_flag = reichsregiment_passed }
+					}
+					NOT = { has_global_flag = landfriede_passed }
+				}
+				country_event = { id = hre_reforms.16 days = 7 random = 2 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { had_global_flag = { flag = reichsregiment_passed days = 1000 } }
+						NOT = { has_global_flag = reichsregiment_passed }
+					}
+					has_global_flag = landfriede_passed
+					NOT = { has_global_flag = chamber_passed }
+				}
+				country_event = { id = hre_reforms.17 days = 7 random = 2 }
+			}
+			if = {
+				limit = {
+					OR = {
+						NOT = { had_global_flag = { flag = reichsregiment_passed days = 1000 } }
+						NOT = { has_global_flag = reichsregiment_passed }
+					}
+					has_global_flag = landfriede_passed
+					has_global_flag = chamber_passed
+					has_global_flag = hereditary_hre_vote
+				}
+				country_event = { id = hre_reforms.18 days = 7 random = 2 }
+			}
+		}
+	}
+	
+	#Pass
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_penny value = 1 } }
+	}
+	
+	#Deny (Revoke, in this case)
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1.5
+				had_global_flag = { flag = penny_passed days = 3000 }
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_penny value = -1 } }
+	}
+}
+
+#Generic - Reichsregiment
+country_event = {
+	id = hre_reforms.15
+	title = hre_reforms.1.t
+	desc = hre_reforms.1.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = landfriede_passed } }
+				country_event = { id = hre_reforms.16 days = 7 random = 2 }
+			}
+			if = {
+				limit = { 
+					has_global_flag = landfriede_passed
+					NOT = { has_global_flag = chamber_passed }
+				}
+				country_event = { id = hre_reforms.17 days = 7 random = 2 }
+			}
+			if = {
+				limit = { 
+					has_global_flag = landfriede_passed
+					has_global_flag = chamber_passed
+					has_global_flag = hereditary_hre_vote
+				}
+				country_event = { id = hre_reforms.18 days = 7 random = 2 }
+			}
+		}
+	}
+	
+	#Pass
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = no
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_reichsregiment value = 1 } }
+	}
+	
+	#Deny
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_reichsregiment value = -1 } }
+	}
+}
+
+#Generic - Landfriede
+country_event = {
+	id = hre_reforms.16
+	title = hre_reforms.2.t
+	desc = hre_reforms.2.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = chamber_passed } }
+				country_event = { id = hre_reforms.17 days = 7 random = 2 }
+			}
+			if = {
+				limit = { 
+					has_global_flag = chamber_passed
+					has_global_flag = hereditary_hre_vote
+				}
+				country_event = { id = hre_reforms.18 days = 7 random = 2 }
+			}
+		}
+	}
+	
+	#Pass
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				any_known_country = {
+					is_part_of_hre = yes
+					num_of_cities = ROOT
+					has_casus_belli_against = ROOT
+				}
+			}
+			modifier = {
+				factor = 2
+				emperor = { has_casus_belli_against = ROOT }
+			}
+			modifier = {
+				factor = 2
+				personality = ai_diplomat
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_landfriede value = 1 } }
+	}
+	
+	#Deny (Revoke, in this case)
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				any_province = {
+					OR = {
+						is_claim = ROOT
+						is_core = ROOT
+					}
+					is_part_of_hre = yes
+					owner = { is_part_of_hre = yes }
+					NOT = { owned_by = ROOT }
+				}
+			}
+			modifier = {
+				factor = 2
+				personality = ai_militarist
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_landfriede value = -1 } }
+	}
+}
+
+#Generic - Imperial Chamber
+country_event = {
+	id = hre_reforms.17
+	title = hre_reforms.3.t
+	desc = hre_reforms.3.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_global_flag = hereditary_hre_vote
+				}
+				country_event = { id = hre_reforms.18 days = 7 random = 2 }
+			}
+		}
+	}
+	
+	#Pass
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_elector = yes
+			}
+			modifier = {
+				factor = 0
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_chamber value = 1 } }
+	}
+	
+	#Deny (Revoke, in this case)
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				is_emperor = yes
+			}
+		}
+		HLR = { change_variable = { which = imperial_reform_chamber value = -1 } }
+	}
+}
+
+#Hereditary HRE
+country_event = {
+	id = hre_reforms.18
+	title = hre_reforms.18.t
+	desc = hre_reforms.18.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	#Pass
+	option = {
+		name = hre_reforms.1.oa
+		ai_chance = {
+			factor = 50
+		}
+		HLR = { change_variable = { which = imperial_reform_inheritable value = 1 } }
+	}
+	
+	#Deny (Revoke, in this case)
+	option = {
+		name = hre_reforms.1.oc
+		ai_chance = {
+			factor = 50
+		}
+		HLR = { change_variable = { which = imperial_reform_inheritable value = -1 } }
+	}
+}
+
+#Generic - Results
+country_event = {
+	id = hre_reforms.19
+	title = hre_reforms.7.t
+	desc = hre_reforms.7.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 0 } } }
+				has_global_flag = penny_passed
+			}
+			custom_tooltip = PENNY_REVOKED
+		}
+		if = {
+			limit = {
+				HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+				has_global_flag = reichsregiment_passed
+			}
+			custom_tooltip = REICHSREGIMENT_REVOKED
+		}
+		if = {
+			limit = {
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+				NOT = { has_global_flag = landfriede_passed }
+			}
+			custom_tooltip = LANDFRIEDE_PASSED
+		}
+		if = {
+			limit = {
+				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+				NOT = { has_global_flag = chamber_passed }
+			}
+			custom_tooltip = CHAMBER_PASSED
+		}
+		if = {
+			limit = {
+				HLR = { check_variable = { which = imperial_reform_inheritable value = 0 } }
+				has_global_flag = hereditary_hre_vote
+			}
+			clr_global_flag = hereditary_hre_vote
+			custom_tooltip = HEREDITARY_PASSED
+		}
+	}
+	
+	option = {
+		name = OK
+		emperor = { country_event = { id = hre_reforms.20 } }
+	}
+}
+
+#Generic - Emperor notified
+country_event = {
+	id = hre_reforms.20
+	title = hre_reforms.7.t
+	desc = hre_reforms.7.d
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	major = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		clr_global_flag = diet_in_session
+			if = {
+				limit = {
+					HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 0 } } }
+					has_global_flag = penny_passed
+				}
+				clr_global_flag = penny_passed
+				set_global_flag = penny_revoked
+				custom_tooltip = PENNY_REVOKED
+			}
+			if = {
+				limit = {
+					HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+					has_global_flag = reichsregiment_passed
+				}
+				clr_global_flag = reichsregiment_passed
+				custom_tooltip = REICHSREGIMENT_REVOKED
+			}
+			if = {
+				limit = {
+					HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+					NOT = { has_global_flag = landfriede_passed }
+				}
+				#hidden_effect = { internal_hre_cb = no }
+				set_global_flag = landfriede_passed
+				custom_tooltip = LANDFRIEDE_PASSED
+			}
+			if = {
+				limit = {
+					HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+					NOT = { has_global_flag = chamber_passed }
+				}
+				set_global_flag = chamber_passed
+				custom_tooltip = CHAMBER_PASSED
+			}
+			if = {
+				limit = {
+					HLR = { check_variable = { which = imperial_reform_inheritable value = 0 } }
+				}
+				set_global_flag = hereditary_hre
+				hre_inheritable = yes
+				custom_tooltip = HEREDITARY_PASSED
+			}
+	}
+	
+	option = {
+		name = OK
+	}
+}

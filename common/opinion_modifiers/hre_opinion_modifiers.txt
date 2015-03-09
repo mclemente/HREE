@@ -1,0 +1,21 @@
+elector_through_pu_with = {
+	opinion = 1
+}
+
+emperor_denies_reforms = {
+	opinion = -50
+	min = -50
+	yearly_decay = 2
+}
+
+declared_war_on_member = {
+	opinion = -10
+	min = -50
+	yearly_decay = 2
+}
+
+declared_war_on_elector = {
+	opinion = -25
+	min = -100
+	yearly_decay = 2
+}

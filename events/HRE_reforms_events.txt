@@ -1,0 +1,440 @@
+namespace = hre_reforms_events
+#Common Penny
+country_event = {
+	id = hre_reforms_events.0
+	title = hre_reforms_events.0.t
+	desc = hre_reforms_events.0.d
+	picture = COURT_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_emperor = no
+		is_part_of_hre = yes
+		has_global_flag = penny_passed
+		treasury = 51
+		is_bankrupt = no
+		NOT = { num_of_loans = 1 }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.of
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				NOT = {
+					emperor = {
+						reverse_has_opinion = {
+							who = ROOT
+							value = 100
+						}
+					}
+				}
+				emperor = {
+					reverse_has_opinion = {
+						who = ROOT
+						value = 0
+					}
+				}
+			}
+		}
+		add_treasury = -25
+		HLR = { change_variable = { which = empire_common_penny value = 25 } }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.oa
+		trigger = { treasury = 51 }
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				NOT = {
+					emperor = {
+						reverse_has_opinion = {
+							who = ROOT
+							value = 100
+						}
+					}
+				}
+				emperor = {
+					reverse_has_opinion = {
+						who = ROOT
+						value = 0
+					}
+				}
+			}
+		}
+		add_treasury = -50
+		HLR = { change_variable = { which = empire_common_penny value = 50 } }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.ob
+		trigger = { treasury = 201 }
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				emperor = {
+					reverse_has_opinion = {
+						who = ROOT
+						value = 100
+					}
+				}
+			}
+			modifier = {
+				factor = 1.5
+				HLR = { check_variable = { which = empire_member_mood value = 1 } }
+			}
+		}
+		add_treasury = -200
+		HLR = { change_variable = { which = empire_common_penny value = 200 } }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.oc
+		trigger = { treasury = 501 }
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				emperor = {
+					reverse_has_opinion = {
+						who = ROOT
+						value = 150
+					}
+				}
+			}
+			modifier = {
+				factor = 1.5
+				HLR = { check_variable = { which = empire_member_mood value = 3 } }
+			}
+		}
+		add_treasury = -500
+		HLR = { change_variable = { which = empire_common_penny value = 500 } }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.od
+		trigger = { treasury = 1001 }
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				emperor = {
+					reverse_has_opinion = {
+						who = ROOT
+						value = 175
+					}
+				}
+			}
+			modifier = {
+				factor = 1.5
+				HLR = { check_variable = { which = empire_member_mood value = 5 } }
+			}
+		}
+		add_treasury = -1000
+		HLR = { change_variable = { which = empire_common_penny value = 1000 } }
+	}
+	
+	option = {
+		name = hre_reforms_events.0.oe
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 2
+				NOT = {
+					emperor = {
+						reverse_has_opinion = {
+							who = ROOT
+							value = 0
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 4
+				NOT = { HLR = { check_variable = { which = empire_member_mood value = 0 } } }
+			}
+		}
+	}
+}
+
+#Common Penny Army
+country_event = {
+	id = hre_reforms_events.1
+	title = hre_reforms_events.1.t
+	desc = hre_reforms_events.1.d
+	picture = LAND_MILITARY_eventPicture
+	
+	trigger = {
+		is_emperor = yes
+		has_global_flag = penny_passed
+		any_known_country = {
+			is_great_power = yes
+			is_part_of_hre = no
+			war_with = ROOT
+			OR = {
+				any_owned_province = {
+					any_neighbor_province = { is_part_of_hre = yes }
+				}
+				AND = {
+					tag = TUR
+					OR = {
+						any_owned_province = { region = hungarian_region }
+						any_owned_province = { region = serbian_region }
+					}
+				}
+			}
+		}
+		NOT = { 
+			any_country = {
+				has_country_flag = menace_against_empire
+			}
+		}
+		HLR = { check_variable = { which = empire_common_penny value = 200 } }
+		NOT = { has_global_flag = penny_funded_army }
+	}
+	
+	mean_time_to_happen = {
+		months = 2
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_known_country = {
+				limit = {
+					is_great_power = yes
+					is_part_of_hre = no
+					war_with = ROOT
+					OR = {
+						any_owned_province = {
+							any_neighbor_province = { is_part_of_hre = yes }
+						}
+						AND = {
+							tag = TUR
+							OR = {
+								any_owned_province = { region = hungarian_region }
+								any_owned_province = { region = serbian_region }
+							}
+						}
+					}
+				}
+				set_country_flag = menace_against_empire
+			}
+		}
+	}
+	
+	
+	option = {
+		name = hre_reforms_events.1.oa
+		set_global_flag = penny_funded_army
+		add_country_modifier = {
+			name = common_penny_army_modifier
+			duration = -1
+			desc = tooltip_war_duration
+		}
+		if = {
+			limit = {
+				capital_scope = {
+					has_siege = no
+					controlled_by = ROOT
+				}
+			}
+			capital_scope = {
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				HLR = { change_variable = { which = empire_common_penny value = -200 } }
+			}
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = empire_common_penny value = 400 } } }
+			random_owned_province = {
+				limit = {
+					any_neighbor_province = {
+						is_capital = yes
+					}
+					has_siege = no
+					controlled_by = ROOT
+				}
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				HLR = { change_variable = { which = empire_common_penny value = -200 } }
+			}
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = empire_common_penny value = 600 } } }
+			random_owned_province = {
+				limit = {
+					any_neighbor_province = {
+						is_capital = yes
+					}
+					has_siege = no
+					controlled_by = ROOT
+				}
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				HLR = { change_variable = { which = empire_common_penny value = -200 } }
+			}
+		}
+		if = {
+			limit = { HLR = { check_variable = { which = empire_common_penny value = 800 } } }
+			random_owned_province = {
+				limit = {
+					any_neighbor_province = {
+						is_capital = yes
+					}
+					has_siege = no
+					controlled_by = ROOT
+				}
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				infantry = ROOT #mercenary_infantry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				cavalry = ROOT #mercenary_cavalry = ROOT
+				HLR = { change_variable = { which = empire_common_penny value = -200 } }
+			}
+		}
+	}
+}
+
+#CPA won war
+country_event = {
+	id = hre_reforms_events.2
+	title = hre_reforms_events.2.t
+	desc = hre_reforms_events.2.d
+	picture = BATTLE_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = penny_funded_army
+		is_emperor = yes
+		any_known_country = {
+			has_country_flag = menace_against_empire
+		}
+		NOT = {
+			any_known_country = {
+				has_country_flag = menace_against_empire
+				war_with = ROOT
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			HLR = { change_variable = { which = hre_opinion_penny value = 1 } }
+			every_country = {
+				limit = { has_country_flag = menace_against_empire }
+				clr_country_flag = menace_against_empire
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		clr_global_flag = penny_funded_army
+		tooltip = { HLR = { change_variable = { which = hre_opinion_penny value = 1 } } }
+		remove_country_modifier = common_penny_army_modifier
+	}
+}
+
+#CPA "disband"
+country_event = {
+	id = hre_reforms_events.3
+	title = hre_reforms_events.3.t
+	desc = hre_reforms_events.3.d
+	picture = LAND_MILITARY_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = penny_funded_army
+		is_emperor = yes
+		OR = {
+			had_global_flag = { flag = penny_funded_army days = 1825 }
+			has_global_flag = penny_revoked
+		}
+		any_known_country = {
+			has_country_flag = menace_against_empire
+		}
+		NOT = {
+			any_known_country = {
+				has_country_flag = menace_against_empire
+				war_with = ROOT
+			}
+		}
+	}
+	
+	mean_time_to_happen = { days = 1 }
+	
+	immediate = {
+		hidden_effect = {
+			HLR = { change_variable = { which = hre_opinion_penny value = -1 } }
+			every_country = {
+				limit = { has_country_flag = menace_against_empire }
+				clr_country_flag = menace_against_empire
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		clr_global_flag = penny_funded_army
+		tooltip = { HLR = { change_variable = { which = hre_opinion_penny value = -1 } } }
+		remove_country_modifier = common_penny_army_modifier
+	}
+}
+
+#Insults after Landfriede
+country_event = {
+	id = hre_reforms_events.5
+	title = hre_reforms_events.5.t
+	desc = hre_reforms_events.5.d
+	picture = ACCUSATION_eventPicture
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+	}
+}
