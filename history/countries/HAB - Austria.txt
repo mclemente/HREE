@@ -783,7 +783,7 @@ national_focus = ADM
 
 1760.1.1 = { leader = {	name = "Nadasy"                	type = general	rank = 6	fire = 2	shock = 3	manuever = 4	siege = 0	death_date = 1785.1.1 } }
 
-1770.1.1 = { decision = "#tenures_abolition_act" }
+#1770.1.1 = { decision = "tenures_abolition_act" }
 
 1780.1.1 = { leader = {	name = "Jozsef Alvintzy"              	type = general	rank = 2	fire = 3	shock = 3	manuever = 3	siege = 0	death_date = 1810.9.25 } }
 

@@ -9,7 +9,7 @@ prince_elector = {
 	}
 	prestige = 0.25
 	legitimacy = 0.25
-	picture = "legitimacy"
+	#picture = "legitimacy"
 }
 
 ##From Reforms
@@ -32,7 +32,7 @@ reichsreform_emperor = {
 	trigger = { has_global_flag = had_diet1495 }
 	build_cost = -0.02
 	technology_cost = -0.02
-	picture = technology_cost
+	#picture = technology_cost
 }
 #For Emperor
 
@@ -53,7 +53,7 @@ landfriede_emperor = {
 	}
 	trigger = { has_global_flag = landfriede_passed }
 	stability_cost_modifier = 0.10
-	picture = stability_cost_modifier
+	#picture = stability_cost_modifier
 }
 
 erbkaisertum_emperor = {
@@ -65,7 +65,7 @@ erbkaisertum_emperor = {
 	imperial_authority = 0.25
 	prestige = 0.5
 	legitimacy = 0.5
-	picture = imperial_authority
+	#picture = imperial_authority
 }
 
 #For Members
@@ -89,5 +89,5 @@ landfriede_member_custom = {
 	trigger = { has_global_flag = landfriede_passed }
 	stability_cost_modifier = -0.10
 	diplomatic_upkeep = 1
-	picture = stability_cost_modifier
+	#picture = stability_cost_modifier
 }

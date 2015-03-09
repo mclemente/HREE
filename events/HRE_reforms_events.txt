@@ -424,17 +424,3 @@ country_event = {
 		remove_country_modifier = common_penny_army_modifier
 	}
 }
-
-#Insults after Landfriede
-country_event = {
-	id = hre_reforms_events.5
-	title = hre_reforms_events.5.t
-	desc = hre_reforms_events.5.d
-	picture = ACCUSATION_eventPicture
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = OK
-	}
-}
