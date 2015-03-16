@@ -16,6 +16,6 @@ declared_war_on_member = {
 
 declared_war_on_elector = {
 	opinion = -25
-	min = -100
+	min = -200
 	yearly_decay = 2
 }

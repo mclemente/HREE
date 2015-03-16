@@ -463,10 +463,28 @@ country_event = {
 		NOT = { HLR = { is_variable_equal = { which = hre_num_of_electors value = 9 } } }
 	}
 	
+	immediate = {
+		hidden_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = helping_in_major_war_emperor
+					reverse_has_opinion_modifier = {
+						who = ROOT
+						modifier = fought_to_the_end
+					}
+				}
+				save_event_target_as = hre_new_elector_12
+			}
+			every_country = {
+				limit = { has_country_flag = helping_in_major_war_emperor }
+				clr_country_flag = helping_in_major_war_emperor
+			}
+		}
+	}
+	
 	option = {
 		name = OK
-		random_country = {
-			limit = { has_country_flag = helping_in_major_war_emperor }
+		event_target:hre_new_elector_12 = {
 			add_prestige = 5
 			elector = yes
 			if = {
@@ -487,12 +505,6 @@ country_event = {
 			}
 		}
 		HLR = { change_variable = { which = hre_num_of_electors value = 1 } }
-		hidden_effect = {
-			every_country = {
-				limit = { has_country_flag = helping_in_major_war_emperor }
-				clr_country_flag = helping_in_major_war_emperor
-			}
-		}
 	}
 }
 

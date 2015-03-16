@@ -1,3 +1,4 @@
+#No Revokation or Renovatio
 # On Action: Emperor from same dynasty
 country_event = {
 	id = 900
@@ -9,11 +10,12 @@ country_event = {
 	
 	trigger = {
 		is_emperor = yes
+		hidden_effect = { add_imperial_influence = 10 }
 	}
 	
 	option = {
 		name = "EVTOPTA900"
-		add_imperial_influence = 10
+		tooltip = { add_imperial_influence = 10 }
 	}
 }
 
@@ -248,6 +250,13 @@ province_event = {
 	
 	option = {
 		name = "EVTOPTA950"
-		add_claim = ROOT
+		every_province = {
+			limit = {
+				previous_owner = FROM
+				owned_by = ROOT
+				is_part_of_hre = yes
+			}
+			add_claim = ROOT
+		}
 	}
 }
