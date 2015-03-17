@@ -26,7 +26,7 @@ capital = 153 # Buda
 }
 
 
-1437.1.1 = { leader = {	name = "J·nos Hunyadi"         	type = general	rank = 1	fire = 4	shock = 4	manuever = 4	siege = 1	death_date = 1445.1.1 } }
+1437.1.1 = { leader = {	name = "J√°nos Hunyadi"         	type = general	rank = 1	fire = 4	shock = 4	manuever = 4	siege = 1	death_date = 1445.1.1 } }
 
 # Personal union with Habsburg under Albrecht II 1437-39
 # Personal union with Poland under Wladyslaw III 1439-44
@@ -41,7 +41,7 @@ capital = 153 # Buda
 	}
 	heir = {
 		name = "Ladislaus Postumus"
-		monarch_name = "L·szlÛ V"
+		monarch_name = "L√°szl√≥ V"
 		dynasty = "von Habsburg"
 		birth_date = 1440.2.22		
 		death_date = 1457.11.24
@@ -54,7 +54,7 @@ capital = 153 # Buda
 
 1452.1.1 = {
 	monarch = {
-		name = "L·szlÛ V"
+		name = "L√°szl√≥ V"
 		dynasty = "von Habsburg"
 		birth_date = 1440.2.22			
 		adm = 3
@@ -65,15 +65,31 @@ capital = 153 # Buda
 
 1457.11.24 = {
 	monarch = {
-		name = "M·ty·s"
-		dynasty = Corvin
+		name = "M√°ty√°s I"
+		dynasty = "Hunyadi"
 		birth_date = 1443.2.23			
 		adm = 4
 		dip = 5
 		mil = 5
-		leader = {	name = "M·ty·s Corvin"         	type = general	rank = 0	fire = 3	shock = 4	manuever = 3	siege = 1 }
+		leader = {	name = "M√°ty√°s Corvin"         	type = general	rank = 0	fire = 3	shock = 4	manuever = 3	siege = 1 }
 	}
 }
+
+1473.4.2 = {
+	heir = {
+		name = "J√°nos" #J√°nos Corvin, never made it to the throne, illegitimate
+		monarch_name = "J√°nos I"
+		dynasty = "Hunyadi"
+		birth_date = 1473.4.2
+		death_date = 1504.10.12
+		claim = 25
+		adm = 2
+		dip = 2
+		mil = 2
+	}
+}
+
+#1490 - PU with Vladislaus II of Bohemia	
 
 1462.1.1 = { leader = {	name = "Pal Kinizsi"           	type = general	rank = 4	fire = 2	shock = 3	manuever = 3	siege = 1	death_date = 1494.1.1 } }
 
@@ -81,21 +97,23 @@ capital = 153 # Buda
 
 1515.1.1 = { leader = {	name = "Miklos Zrinyi"         	type = general	rank = 2	fire = 2	shock = 4	manuever = 3	siege = 1	death_date = 1530.1.1 } }
 
+#1516 - Ludvik I of Bohemia
+
 1526.8.30 = {
 	monarch = {
-		name = "J·nos I"
+		name = "J√°nos I"
 		dynasty = "Szapolyai"
 		birth_date = 1487.2.2			
 		adm = 4
 		dip = 3
 		mil = 2
-		leader = {	name = "J·nos I Z·polya"       	type = general	rank = 0	fire = 2	shock = 2	manuever = 2	siege = 0}
+		leader = {	name = "J√°nos I Z√°polya"       	type = general	rank = 0	fire = 2	shock = 2	manuever = 2	siege = 0}
 	}
 }
 
 1540.7.24 = {
 	monarch = {
-		name = "J·nos II"
+		name = "J√°nos II"
 		birth_date = 1540.7.7			
 		dynasty = "Szapolyai"
 		adm = 1
@@ -110,8 +128,8 @@ capital = 153 # Buda
 
 1571.5.26 = {
 	monarch = {
-		name = "Istv·n"
-		dynasty = "B·thory"
+		name = "Istv√°n"
+		dynasty = "B√°thory"
 		birth_date = 1533.9.27			
 		adm = 5
 		dip = 2
@@ -122,7 +140,7 @@ capital = 153 # Buda
 1576.5.3 = {
 	monarch = {
 		name = "Christofer"
-		dynasty = "B·thory"
+		dynasty = "B√°thory"
 		birth_date = 1530.5.27			
 		adm = 1
 		dip = 2
@@ -133,7 +151,7 @@ capital = 153 # Buda
 1581.1.1 = {
 	monarch = {
 		name = "Sigismund"
-		dynasty = "B·thory"
+		dynasty = "B√°thory"
 		birth_date = 1572.3.27			
 		adm = 1
 		dip = 2
@@ -166,7 +184,7 @@ capital = 153 # Buda
 
 1605.1.1 = {
 	monarch = {
-		name = "Istv·n"
+		name = "Istv√°n"
 		dynasty = "Bocskai"
 		birth_date = 1557.1.1		
 		adm = 2
@@ -177,8 +195,8 @@ capital = 153 # Buda
 
 1606.12.30 = {
 	monarch = {
-		name = "G·bor"
-		dynasty = "B·thory"
+		name = "G√°bor"
+		dynasty = "B√°thory"
 		birth_date = 1589.8.15		
 		adm = 4
 		dip = 3
@@ -188,7 +206,7 @@ capital = 153 # Buda
 
 1613.1.1 = {
 	monarch = {
-		name = "G·bor"
+		name = "G√°bor"
 		dynasty = "Bethlen"
 		birth_date = 1580.1.1
 		adm = 4
@@ -200,8 +218,8 @@ capital = 153 # Buda
 
 1629.11.17 = {
 	monarch = {
-		name = "Gyˆrgy I"
-		dynasty = "R·kÛczy"
+		name = "Gy√∂rgy I"
+		dynasty = "R√°k√≥czy"
 		birth_date = 1593.6.8		
 		adm = 2
 		dip = 2
@@ -211,8 +229,8 @@ capital = 153 # Buda
 
 1648.1.1 = {
 	monarch = {
-		name = "Gyˆrgy II"
-		dynasty = "R·kÛczy"
+		name = "Gy√∂rgy II"
+		dynasty = "R√°k√≥czy"
 		birth_date = 1621.1.30		
 		adm = 3
 		dip = 1
@@ -225,7 +243,7 @@ capital = 153 # Buda
 1665.1.1 = {
 	monarch = {
 		name = "Ferenc I"
-		dynasty = "R·kÛczy"
+		dynasty = "R√°k√≥czy"
 		birth_date = 1645.2.24		
 		adm = 3
 		dip = 0
@@ -238,7 +256,7 @@ capital = 153 # Buda
 1691.1.1 = {
 	monarch = {
 		name = "Ferenc II"
-		dynasty = "R·kÛczy"
+		dynasty = "R√°k√≥czy"
 		birth_date = 1676.3.27		
 		adm = 4
 		dip = 5
