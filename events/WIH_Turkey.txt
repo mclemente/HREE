@@ -1,0 +1,280 @@
+namespace = women_history_events
+
+normal_or_historical_nations = yes
+# Kösem Sultan (1590-1651)
+country_event = {
+	id = women_history_events.3
+	title = women_history_events.3.t
+	desc = women_history_events.3.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = TUR
+		is_year = 1590
+		NOT = {
+			is_year = 1655
+		}
+		is_female = no
+		has_regency = yes
+		is_lesser_in_union = no
+		government = monarchy
+		NOT = {
+			has_global_flag = wih_kosem_tur_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_kosem_tur_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.3.a
+		define_ruler = {
+			name = "Kosem Sultan"
+			dynasty = "Osmanoglu"
+			adm = 5
+			dip = 4
+			mil = 5
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.3.b
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			female = yes
+			type = statesman #spymaster
+			skill = 2
+			name = "Kosem Sultan"
+		}
+	}
+}
+
+# Roxelana (1500-1558)
+country_event = {
+	id = women_history_events.5
+	title = women_history_events.5.t
+	desc = women_history_events.5.d
+	picture = wihgfx_FEMALE_SCHOLAR_eventPicture
+
+	trigger = {
+		tag = TUR
+		is_year = 1500
+		NOT = {
+			is_year = 1600
+		}
+		has_regency = no
+		is_female = no
+		NOT = {
+			has_global_flag = wih_roxelana_tur_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_roxelana_tur_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.5.a
+		define_advisor = {
+			female = yes
+			type = statesman #spymaster
+			skill = 2
+			name = "Hurrem Sultan"
+		}
+	}
+	option = {
+		name = women_history_events.5.b
+		define_advisor = {
+			female = yes
+			type = spymaster
+			skill = 2
+			name = "Hurrem Sultan"
+		}
+	}
+}
+
+# Ayse Hafsa Sultan
+country_event = {
+	id = women_history_events.29
+	title = women_history_events.29.t
+	desc = women_history_events.29.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = TUR
+		is_year = 1479
+		NOT = {
+			is_year = 1550
+		}
+		is_female = no
+		has_regency = no
+		is_lesser_in_union = no
+		government = monarchy
+		NOT = {
+			OR = {
+				ADM = 3
+				DIP = 3
+				MIL = 3
+			}
+		}
+		NOT = {
+			has_global_flag = wih_aysehafsasultan_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_aysehafsasultan_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.29.a
+		define_ruler = {
+			name = "Ayse Hafsa Sultan"
+			dynasty = "Osmanoglu"
+			adm = 2
+			dip = 4
+			mil = 3
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.29.b
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			female = yes
+			type = statesman
+			skill = 2
+			name = "Ayse Hafsa Sultan"
+		}
+	}
+}
+
+# Safiye Sultan
+country_event = {
+	id = women_history_events.93
+	title = women_history_events.93.t
+	desc = women_history_events.93.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = TUR
+		is_year = 1550
+		is_female = no
+		has_regency = no
+		NOT = {
+			is_year = 1605
+		}
+		NOT = {
+			has_global_flag = wih_safiyesultan_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_safiyesultan_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.93.a
+		define_advisor = {
+			name = "Safiye Sultan"
+			type = treasurer
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.93.b
+		define_advisor = {
+			name = "Safiye Sultan"
+			type = diplomat
+			skill = 2
+			female = yes
+		}
+	}
+}
+
+# Nurbanu Sultan
+country_event = {
+	id = women_history_events.97
+	title = women_history_events.97.t
+	desc = women_history_events.97.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = TUR
+		is_year = 1525
+		NOT = {
+			is_year = 1583
+		}
+		is_female = no
+		has_regency = yes
+		NOT = {
+			has_global_flag = wih_nurbanusultan_flag
+		}
+		is_lesser_in_union = no
+		government = monarchy
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_nurbanusultan_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.97.a
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			name = "Nurbanu Sultan"
+			type = statesman
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.97.b
+		define_ruler = {
+			name = "Nurbanu Sultan"
+			dynasty = "Osmanoglu"
+			adm = 4
+			dip = 4
+			mil = 3
+			female = yes
+		}
+	}
+}

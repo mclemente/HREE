@@ -1,0 +1,129 @@
+namespace = women_history_events
+
+normal_or_historical_nations = yes
+# Eleni of Ethiopia
+country_event = {
+	id = women_history_events.74
+	title = women_history_events.74.t
+	desc = women_history_events.74.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		is_year = 1450
+		tag = ETH
+		NOT = {
+			is_year = 1522
+		}
+		OR = {
+			AND = {
+				NOT = {
+					legitimacy = 50
+				}
+				is_female = no
+			}
+			NOT = {
+				OR = {
+					ADM = 3
+					DIP = 3
+					MIL = 3
+				}
+			}
+		}
+		NOT = {
+			has_global_flag = wih_eleniethiopia_flag
+		}
+		is_lesser_in_union = no
+		government = monarchy
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_eleniethiopia_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.74.a
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			name = "Eleni of Ethiopia"
+			type = statesman
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.74.b
+		define_ruler = {
+			name = "Eleni"
+			dynasty = "Solomonid"
+			adm = 4
+			dip = 4
+			mil = 3
+			female = yes
+		}
+	}
+}
+
+# Mentewab
+country_event = {
+	id = women_history_events.92
+	title = women_history_events.92.t
+	desc = women_history_events.92.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = ETH
+		is_year = 1706
+		religion_group = christian
+		NOT = {
+			is_year = 1773
+		}
+		has_regency = yes
+		NOT = {
+			has_global_flag = wih_mentewab_flag
+		}
+		is_lesser_in_union = no
+		government = monarchy
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_mentewab_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.92.a
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			name = "Mentewab"
+			type = statesman
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.92.b
+		define_ruler = {
+			name = "Mentewab"
+			dynasty = "Solomonid"
+			adm = 3
+			dip = 4
+			mil = 3
+			female = yes
+		}
+	}
+}

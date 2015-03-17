@@ -1,0 +1,281 @@
+namespace = women_history_events
+
+normal_or_historical_nations = yes
+# Roshanara Begum
+country_event = {
+	id = women_history_events.30
+	title = women_history_events.30.t
+	desc = women_history_events.30.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = MUG
+		is_year = 1617
+		NOT = {
+			is_year = 1671
+		}
+		is_female = no
+		is_lesser_in_union = no
+		government = monarchy
+		NOT = {
+			OR = {
+				ADM = 3
+				DIP = 3
+				MIL = 3
+			}
+		}
+		NOT = {
+			has_global_flag = wih_roshanarabegum_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_roshanarabegum_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.30.a
+		define_ruler = {
+			name = "Roshanara Begum"
+			dynasty = "Timurid"
+			adm = 3
+			dip = 2
+			mil = 4
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.30.b
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			female = yes
+			type = statesman
+			skill = 2
+			name = "Roshanara Begum"
+		}
+	}
+}
+
+# Nur Jahan
+country_event = {
+	id = women_history_events.84
+	title = women_history_events.84.t
+	desc = women_history_events.84.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		tag = MUG
+		is_year = 1577 
+		NOT = {
+			is_year = 1645
+		}
+		OR = {
+			AND = {
+				NOT = {
+					legitimacy = 75
+				}
+				is_female = no
+			}
+			NOT = {
+				OR = {
+					ADM = 3
+					DIP = 3
+					MIL = 3
+				}
+			}
+		}
+		NOT = {
+			has_global_flag = wih_nurjahan_flag
+		}
+		is_lesser_in_union = no
+		government = monarchy
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_nurjahan_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.84.a
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			name = "Nur Jahan"
+			type = statesman
+			skill = 2
+			female = yes
+		}
+
+	}
+	option = {
+		name = women_history_events.84.b
+		define_ruler = {
+			name = "Nur Jahan"
+			dynasty = "Timurid"
+			adm = 3
+			dip = 4
+			mil = 4
+			female = yes
+		}
+	}
+}
+
+# Mumtaz Mahal
+country_event = {
+	id = women_history_events.86
+	title = women_history_events.86.t
+	desc = women_history_events.86.d
+	picture = wihgfx_FEMALES_eventPicture
+
+	trigger = {
+		OR = {
+			tag = TIM
+			tag = MUG
+		}
+		is_year = 1593
+		NOT = {
+			is_year = 1631
+		}
+		NOT = {
+			has_global_flag = wih_mumtazmahal_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_mumtazmahal_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.86.a
+		add_country_modifier = {
+			name = wih_mumtazmahal
+			duration = 7300
+		}
+	}
+	option = {
+		name = women_history_events.86.b
+		trigger = {
+			NOT = { has_country_flag = taj_mahal_exists }
+		}
+		add_prestige = 10
+		set_country_flag = taj_mahal_exists
+	}
+}
+
+# Jahanzeb Banu Begum
+country_event = {
+	id = women_history_events.90
+	title = women_history_events.90.t
+	desc = women_history_events.90.d
+	picture = wihgfx_FEMALES_eventPicture
+
+	trigger = {
+		tag = MUG
+		is_year = 1649
+		NOT = {
+			is_year = 1706
+		}
+		NOT = {
+			has_global_flag = wih_jahanzebbanubegum_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_jahanzebbanubegum_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.90.a
+		define_advisor = {
+			name = "Jahanzeb Banu Begum"
+			type = diplomat
+			skill = 2
+			female = yes
+		}
+
+	}
+	option = {
+		name = women_history_events.90.b
+		define_general = {
+			name = "Jahanzeb Banu Begum"
+			shock = 2
+			fire = 3
+			manuever = 3
+			siege = 3
+			female = yes
+		}
+	}
+}
+
+# Mariam-uz-Zamani
+country_event = {
+	id = women_history_events.99
+	title = women_history_events.99.t
+	desc = women_history_events.99.d
+	picture = wihgfx_FEMALES_eventPicture
+
+	trigger = {
+		tag = MUG
+		is_year = 1542
+		NOT = {
+			is_year = 1623
+		}
+		NOT = {
+			has_global_flag = wih_mariamuzzamani_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_mariamuzzamani_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.99.a
+		define_advisor = {
+			name = "Mariam-uz-Zamani"
+			type = treasurer
+			skill = 3
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.99.b
+		add_country_modifier = {
+			name = wih_mariamuzzamani
+			duration = 7300
+		}
+	}
+}

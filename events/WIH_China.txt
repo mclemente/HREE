@@ -1,0 +1,219 @@
+namespace = women_history_events
+
+normal_or_historical_nations = yes
+# Empress Dowager Xiaozhuang (1613 – 1688)
+country_event = {
+	id = women_history_events.48
+	title = women_history_events.48.t
+	desc = women_history_events.48.d
+	picture = wihgfx_FEMALE_RULER_eventPicture
+
+	trigger = {
+		OR = {
+			tag = QNG
+			tag = MNG
+		}
+		is_year = 1613
+		NOT = {
+			is_year = 1688
+		}
+		has_regency = yes
+		is_lesser_in_union = no
+		government = monarchy
+		NOT = {
+			has_global_flag = wih_xiaozhuan_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_xiaozhuan_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.48.a
+		add_adm_power = 100
+		add_dip_power = 100
+		add_mil_power = 100
+		define_advisor = {
+			female = yes
+			type = diplomat
+			skill = 2
+			name = "Empress Dowager Xiaozhuang"
+		}
+	}
+	option = {
+		name = women_history_events.48.b
+		define_ruler = {
+			name = "Xiaozhuang"
+			dynasty = "Aisin Gioro"
+			adm = 4
+			dip = 4
+			mil = 4
+			female = yes
+		}
+	}
+}
+
+# Qin Liangyu
+country_event = {
+	id = women_history_events.52
+	title = women_history_events.52.t
+	desc = women_history_events.52.d
+	picture = wihgfx_FEMALES_eventPicture
+
+	trigger = {
+		tag = MNG
+		OR = {
+			truce_with = MCH
+			war_with = MCH
+			MCH = {
+				any_owned_province = {
+					is_core = ROOT
+				}
+			}
+		}
+		is_year = 1574
+		NOT = {
+			is_year = 1648
+		}
+		NOT = {
+			has_global_flag = wih_qinliangyu_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_qinliangyu_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.52.a
+		define_general = {
+			name = "Qin Liangyu"
+			female = yes
+			fire = 4
+			shock = 4
+			manuever = 3
+			siege = 3
+		}
+	}
+	option = {
+		name = women_history_events.52.b
+		define_advisor = {
+			name = "Qin Liangyu"
+			type = army_reformer
+			skill = 2
+			female = yes
+		}
+	}
+}
+
+# Wang Zhenyi
+country_event = {
+	id = women_history_events.54
+	title = women_history_events.54.t
+	desc = women_history_events.54.d
+	picture = wihgfx_FEMALE_SCHOLAR_eventPicture
+
+	trigger = {
+		OR = {
+			tag = QNG
+			tag = MNG
+		}
+		is_year = 1768
+		NOT = {
+			has_global_flag = wih_wangzhenyi_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_wangzhenyi_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.54.a
+		add_country_modifier = {
+			name = wih_wangzhenyi
+			duration = 7300
+		}
+	}
+	option = {
+		name = women_history_events.54.b
+		define_advisor = {
+			name = "Wang Zhenyi"
+			type = philosopher
+			skill = 2
+			female = yes
+		}
+	}
+}
+
+# Ching Shih
+country_event = {
+	id = women_history_events.91
+	title = women_history_events.91.t
+	desc = women_history_events.91.d
+	picture = wihgfx_FEMALE_GENERAL_eventPicture
+
+	trigger = {
+		OR = {
+			tag = QNG
+			any_owned_province = {
+				any_neighbor_province = {
+					region = chinese_coast
+				}
+			}
+		}
+		is_year = 1775
+		NOT = {
+			has_global_flag = wih_chingshih_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_chingshih_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.91.a
+		define_advisor = {
+			name = "Ching Shih"
+			type = naval_reformer
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.91.b
+		define_admiral = {
+			name = "Ching Shih"
+			shock = 3
+			fire = 4
+			manuever = 3
+			female = yes
+		}
+	}
+}

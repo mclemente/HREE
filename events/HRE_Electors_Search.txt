@@ -154,6 +154,7 @@ country_event = {
 			hre_religion_treaty = yes
 			hre_leagues_enabled = no
 		}
+		has_any_disaster = no
 		NOT = { has_ruler_modifier = hre_imperial_ban }
 	}
 	
@@ -348,13 +349,22 @@ country_event = {
 		}
 	}
 	
-	immediate = { hidden_effect = { HLR = { change_variable = { which = num_of_lay_electors value = 1 } } } }
+	immediate = {
+		hidden_effect = {
+			HLR = { change_variable = { which = num_of_lay_electors value = 1 } }
+			elector = yes
+			add_prestige = 10
+			add_stability = 1
+		}
+	}
 	
 	option = {
 		name = hre_electors_search.3.oa
-		elector = yes
-		add_prestige = 10
-		add_stability = 1
+		tooltip = {
+			elector = yes
+			add_prestige = 10
+			add_stability = 1
+		}
 		if = {
 			limit = {
 				NOT = { is_year = 1803 }
@@ -388,6 +398,7 @@ country_event = {
 			hre_religion_treaty = yes
 			hre_leagues_enabled = no
 		}
+		has_any_disaster = no
 		NOT = { has_ruler_modifier = hre_imperial_ban }
 	}
 	
@@ -586,13 +597,22 @@ country_event = {
 		}
 	}
 	
-	immediate = { hidden_effect = { HLR = { change_variable = { which = num_of_spiritual_electors value = 1 } } } }
+	immediate = {
+		hidden_effect = {
+			HLR = { change_variable = { which = num_of_spiritual_electors value = 1 } }
+			elector = yes
+			add_prestige = 10
+			add_stability = 1
+		}
+	}
 	
 	option = {
 		name = hre_electors_search.3.oa
-		elector = yes
-		add_prestige = 10
-		add_stability = 1
+		tooltip = {
+			elector = yes
+			add_prestige = 10
+			add_stability = 1
+		}
 		if = {
 			limit = { HLR = { check_variable = { which = num_of_spiritual_electors which = max_spiritual } } }
 			clr_global_flag = checking_for_spiritual

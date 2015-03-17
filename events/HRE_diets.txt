@@ -265,19 +265,19 @@ country_event = {
 	
 	immediate = {
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 			custom_tooltip = REICHSREGIMENT_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
 			custom_tooltip = LANDFRIEDE_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 1 } } }
 			custom_tooltip = CHAMBER_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
 			custom_tooltip = PENNY_PASSED
 		}
 	}
@@ -300,19 +300,19 @@ country_event = {
 	
 	immediate = {
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
 			custom_tooltip = PENNY_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 			custom_tooltip = REICHSREGIMENT_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
 			custom_tooltip = LANDFRIEDE_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 1 } } }
 			custom_tooltip = CHAMBER_PASSED
 		}
 	}
@@ -322,31 +322,31 @@ country_event = {
 		name = hre_reforms.8.oa
 		trigger = {
 			OR = {
-				HLR = { check_variable = { which = imperial_reform_penny value = 0 } }
-				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } }
-				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
-				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_penny value = 1 } }
+				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } }
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } }
+				HLR = { check_variable = { which = imperial_reform_chamber value = 1 } }
 			}
 		}
 		ai_chance = {
 			factor = 90
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
 			set_global_flag = penny_passed
 			hidden_effect = { HLR = { set_variable = { which = hre_opinion_penny value = 0 } } }
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 			set_global_flag = reichsregiment_passed
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
 			#hidden_effect = { internal_hre_cb = no }
 			set_global_flag = landfriede_passed
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 1 } } }
 			set_global_flag = chamber_passed
 		}
 		every_country = {
@@ -370,11 +370,11 @@ country_event = {
 		name = hre_reforms.8.ob
 		trigger = {
 			OR = {
-				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } }
-				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
-				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } }
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } }
+				HLR = { check_variable = { which = imperial_reform_chamber value = 1 } }
 			}
-			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
 			has_global_flag = emperor_backed_penny
 		}
 		ai_chance = {
@@ -401,10 +401,10 @@ country_event = {
 	option = {
 		name = hre_reforms.8.oc
 		trigger = {
-			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
-			NOT = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
-			NOT = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
-			NOT = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
+			NOT = { HLR = { check_variable = { which = imperial_reform_chamber value = 1 } } }
 		}
 		hidden_effect = {
 			FROM = {
@@ -446,19 +446,19 @@ country_event = {
 	
 	immediate = {
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_penny value = 1 } } }
 			custom_tooltip = PENNY_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 			custom_tooltip = REICHSREGIMENT_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
 			custom_tooltip = LANDFRIEDE_PASSED
 		}
 		if = {
-			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 0 } } }
+			limit = { HLR = { check_variable = { which = imperial_reform_chamber value = 1 } } }
 			custom_tooltip = CHAMBER_PASSED
 		}
 	}
@@ -1204,35 +1204,36 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 0 } } }
+				HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 1 } } }
 				has_global_flag = penny_passed
 			}
 			custom_tooltip = PENNY_REVOKED
 		}
 		if = {
 			limit = {
-				HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+				HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 				has_global_flag = reichsregiment_passed
 			}
 			custom_tooltip = REICHSREGIMENT_REVOKED
 		}
 		if = {
 			limit = {
-				HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } }
 				NOT = { has_global_flag = landfriede_passed }
 			}
 			custom_tooltip = LANDFRIEDE_PASSED
 		}
 		if = {
 			limit = {
-				HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_chamber value = 1 } }
 				NOT = { has_global_flag = chamber_passed }
 			}
 			custom_tooltip = CHAMBER_PASSED
 		}
 		if = {
 			limit = {
-				HLR = { check_variable = { which = imperial_reform_inheritable value = 0 } }
+				HLR = { check_variable = { which = imperial_reform_inheritable value = 1 } }
+				is_year = 1700
 				has_global_flag = hereditary_hre_vote
 			}
 			clr_global_flag = hereditary_hre_vote
@@ -1260,7 +1261,7 @@ country_event = {
 		clr_global_flag = diet_in_session
 			if = {
 				limit = {
-					HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 0 } } }
+					HLR = { NOT = { check_variable = { which = imperial_reform_penny value = 1 } } }
 					has_global_flag = penny_passed
 				}
 				clr_global_flag = penny_passed
@@ -1269,7 +1270,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 0 } } }
+					HLR = { NOT = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 					has_global_flag = reichsregiment_passed
 				}
 				clr_global_flag = reichsregiment_passed
@@ -1277,7 +1278,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					HLR = { check_variable = { which = imperial_reform_landfriede value = 0 } }
+					HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } }
 					NOT = { has_global_flag = landfriede_passed }
 				}
 				#hidden_effect = { internal_hre_cb = no }
@@ -1286,7 +1287,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					HLR = { check_variable = { which = imperial_reform_chamber value = 0 } }
+					HLR = { check_variable = { which = imperial_reform_chamber value = 1 } }
 					NOT = { has_global_flag = chamber_passed }
 				}
 				set_global_flag = chamber_passed
@@ -1294,7 +1295,8 @@ country_event = {
 			}
 			if = {
 				limit = {
-					HLR = { check_variable = { which = imperial_reform_inheritable value = 0 } }
+					HLR = { check_variable = { which = imperial_reform_inheritable value = 1 } }
+					is_year = 1700
 				}
 				set_global_flag = hereditary_hre
 				hre_inheritable = yes

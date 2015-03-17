@@ -1,0 +1,199 @@
+namespace = women_history_events
+
+normal_or_historical_nations = yes
+# Ohatsu
+country_event = {
+	id = women_history_events.47
+	title = women_history_events.47.t
+	desc = women_history_events.47.d
+	picture = wihgfx_FEMALE_SCHOLAR_eventPicture
+
+	trigger = {
+		OR = {
+			tag = JAP
+			government = daimyo
+		}
+		is_year = 1570
+		NOT = {
+			is_year = 1633
+		}
+		NOT = {
+			has_global_flag = wih_ohatsu_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_ohatsu_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.47.a
+		define_advisor = {
+			female = yes
+			type = diplomat
+			skill = 2
+			name = "Ohatsu"
+		}
+	}
+	option = {
+		name = women_history_events.47.b
+		add_country_modifier = {
+			name = wih_ohatsu
+			duration = 7300
+		}
+	}
+}
+
+# Kaihime
+country_event = {
+	id = women_history_events.50
+	title = women_history_events.50.t
+	desc = women_history_events.50.d
+	picture = wihgfx_FEMALES_eventPicture
+
+	trigger = {
+		OR = {
+			tag = JAP
+			government = daimyo
+		}
+		is_year = 1572
+		NOT = {
+			is_year = 1650
+		}
+		NOT = {
+			has_global_flag = wih_kaihime_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_kaihime_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.50.a
+		define_advisor = {
+			female = yes
+			type = commandant
+			skill = 2
+			name = "Kaihime"
+		}
+	}
+	option = {
+		name = women_history_events.50.b
+		define_general = {
+			name = "Kaihime"
+			female = yes
+			fire = 3
+			shock = 3
+			manuever = 4
+			siege = 2
+		}
+	}
+}
+
+# Izumo no Okuni
+country_event = {
+	id = women_history_events.58
+	title = women_history_events.58.t
+	desc = women_history_events.58.d
+	picture = wihgfx_FEMALE_SCHOLAR_eventPicture
+
+	trigger = {
+		OR = {
+			tag = JAP
+			government = daimyo
+		}
+		is_year = 1571
+		NOT = {
+			is_year = 1800
+		}
+		NOT = {
+			has_global_flag = wih_izumonookuni_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_izumonookuni_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.58.a
+		define_advisor = {
+			name = "Izumo no Okuni"
+			type = artist
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.58.b
+		add_country_modifier = {
+			name = wih_izumonookuni
+			duration = 7300
+		}
+	}
+}
+
+# Heo Nanseolheon
+country_event = {
+	id = women_history_events.98
+	title = women_history_events.98.t
+	desc = women_history_events.98.d
+	picture = wihgfx_FEMALE_SCHOLAR_eventPicture
+
+	trigger = {
+		tag = KOR
+		is_year = 1504  
+		NOT = {
+			is_year = 1551
+		}
+		NOT = {
+			has_global_flag = wih_heonanseolheon_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 200
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_global_flag = wih_heonanseolheon_flag
+		}
+	}
+	
+	option = {
+		name = women_history_events.98.a
+		define_advisor = {
+			name = "Heo Nanseolheon"
+			type = artist
+			skill = 2
+			female = yes
+		}
+	}
+	option = {
+		name = women_history_events.98.b
+		add_country_modifier = {
+			name = wih_heonanseolheon
+			duration = 7300
+		}
+	}
+}
