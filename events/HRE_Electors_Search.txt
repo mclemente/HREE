@@ -21,13 +21,7 @@ country_event = {
 				HLR = { is_variable_equal = { which = hre_num_of_electors value = 9 } }
 			}
 		}
-		OR = {
-			is_emperor = yes
-			AND = {
-				emperor = { is_at_war = yes }
-				is_elector = yes
-			}
-		}
+		is_emperor = yes
 		is_at_war = no
 		NOT = { has_global_flag = checking_for_spiritual }
 		NOT = { has_global_flag = checking_for_lay }
@@ -83,6 +77,7 @@ country_event = {
 	
 	option = {
 		name = OK
+		tooltip = { country_event = { id = hre_electors_search.2 } }
 		hidden_effect = { country_event = { id = hre_electors_search.2 days = 15 } }
 	}
 }
