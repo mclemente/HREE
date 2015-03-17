@@ -32,7 +32,6 @@ country_event = {
 		NOT = { has_global_flag = checking_for_spiritual }
 		NOT = { has_global_flag = checking_for_lay }
 		NOT = { has_global_flag = search_for_electors_pt1 }
-		NOT = { has_global_flag = hereditary_hre }
 		OR = {
 			hre_leagues_enabled = no
 			hre_religion_locked = yes
