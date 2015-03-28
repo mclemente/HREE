@@ -62,10 +62,6 @@ country_decisions = {
 				limit = { has_global_flag = chamber_passed }
 				custom_tooltip = CHAMBER_PASSED
 			}
-			#if = {
-			#	limit = { has_global_flag = circle_passed }
-			#	custom_tooltip = CIRCLE_PASSED
-			#}
 			if = {
 				limit = { has_global_flag = penny_passed }
 				custom_tooltip = PENNY_PASSED
@@ -82,6 +78,131 @@ country_decisions = {
 					limit = { has_country_flag = spokesman_diet }
 				}
 				custom_tooltip = spokesman_diet_tooltip
+			}
+		}
+	}
+	
+	see_hre_vote_power = {
+		major = yes
+		potential = {
+			ai = no
+			is_part_of_hre = yes
+		}
+		allow = { always = no }
+		effect = {
+			custom_tooltip = hre_vote_count_total
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 10 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 10 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 9 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 9 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 8 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 8 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 7 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 7 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 6 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 6 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 5 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 5 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 4 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 4 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 3 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 3 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 2 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 2 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = { is_variable_equal = { which = hre_vote_count value = 1 } }
+				random_country = {
+					limit = { is_variable_equal = { which = hre_vote_count value = 1 } }
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+			every_country = {
+				limit = {
+					is_variable_equal = { which = hre_vote_count value = 0 }
+					is_part_of_hre = yes
+				}
+				random_country = {
+					limit = {
+						is_variable_equal = { which = hre_vote_count value = 0 }
+						is_part_of_hre = yes
+					}
+					custom_tooltip = hre_vote_count_total
+				}
+			}
+		}
+	}
+	
+	see_hre_foreign_controllers = {
+		major = yes
+		potential = {
+			ai = no
+			is_part_of_hre = yes
+			any_country = {
+				is_part_of_hre = no
+				any_country = {
+					is_part_of_hre = yes
+					is_subject_of = PREV
+				}
+			}
+		}
+		allow = {
+			always = no
+		}
+		effect = {
+			every_country = {
+				limit = {
+					is_part_of_hre = no
+					any_country = {
+						is_part_of_hre = yes
+						is_subject_of = PREV
+					}
+				}
+				custom_tooltip = controls_hre_prince
 			}
 		}
 	}

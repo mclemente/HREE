@@ -63,6 +63,8 @@ on_war_won = {
 		hre_electors.12
 		hre_electors.13 #Ruler Imperial Ban
 		hre_reforms_events.2 #Common Penny Army wins war
+		hre_check_votes.0
+		hunboh_government.1
 	}
 }
 
@@ -72,6 +74,8 @@ on_war_lost = {
 	events = {
 		hre_electors.13 #Ruler Imperial Ban
 		hre_reforms_events.3 #CPA disbands
+		hre_check_votes.0
+		hunboh_government.1
 	}
 }
 
@@ -83,6 +87,7 @@ on_new_monarch = {
 		hre_electors.11 #Handling Palatinate's Ban pt.2
 		hre_reforms.12 #Giving Electorate to worthy allies
 		flavor_boh.1 #In case monarch dies
+		hunboh_government.0 #Ladislaus assumes the throne
 	}
 }
 

@@ -173,42 +173,6 @@ country_event = {
 				}
 				set_country_flag = bur_eligible_marriage
 			}			
-			# Spain
-			if = {
-				limit = {
-					any_country = {
-						OR = {
-							tag = SPA
-							tag = CAS
-						}
-						marriage_with = ROOT
-						is_subject = no
-						capital_scope = {
-							is_part_of_hre = no
-						}
-					}
-				}
-				set_country_flag = bur_eligible_spain
-				if = {
-					limit = {
-						SPA = {
-							marriage_with = ROOT
-							is_subject = no
-						}
-					}
-					set_country_flag = spain_spa
-				}
-				if = {
-					limit = {
-						NOT = { has_country_flag = spain_spa }
-						CAS = {
-							marriage_with = ROOT
-							is_subject = no
-						}
-					}
-					set_country_flag = spain_cas
-				}
-			}
 			# The Rest to Emperor
 			if = {
 				limit = {
@@ -345,32 +309,6 @@ country_event = {
 						has_country_flag = bur_marriage
 					}
 					country_event = { id = flavor_bur.5 days = 3 }
-				}
-			}
-			# Spain
-			if = {
-				limit = {
-					NOT = { has_country_flag = bur_eligible_france }
-					NOT = { has_country_flag = bur_eligible_emperor }
-					NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-					NOT = { has_country_flag = bur_eligible_marriage }
-					has_country_flag = bur_eligible_spain
-				}
-				if = {
-					limit = {
-						has_country_flag = spain_spa
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						has_country_flag = spain_cas
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
 				}
 			}
 			# The Rest to Emperor
@@ -568,42 +506,6 @@ country_event = {
 				}
 				set_country_flag = bur_eligible_marriage
 			}
-			# Spain
-			if = {
-				limit = {
-					any_country = {
-						OR = {
-							tag = SPA
-							tag = CAS
-						}
-						marriage_with = ROOT
-						is_subject = no
-						capital_scope = {
-							is_part_of_hre = no
-						}
-					}
-				}
-				set_country_flag = bur_eligible_spain
-				if = {
-					limit = {
-						SPA = {
-							marriage_with = ROOT
-							is_subject = no
-						}
-					}
-					set_country_flag = spain_spa
-				}
-				if = {
-					limit = {
-						NOT = { has_country_flag = spain_spa }
-						CAS = {
-							marriage_with = ROOT
-							is_subject = no
-						}
-					}
-					set_country_flag = spain_cas
-				}
-			}
 			# The Rest to Emperor
 			if = {
 				limit = {
@@ -728,32 +630,6 @@ country_event = {
 						has_country_flag = bur_marriage
 					}
 					country_event = { id = flavor_bur.5 days = 3 }
-				}
-			}
-			# Spain
-			if = {
-				limit = {
-					NOT = { has_country_flag = bur_eligible_france }
-					NOT = { has_country_flag = bur_eligible_emperor }
-					NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-					NOT = { has_country_flag = bur_eligible_marriage }
-					has_country_flag = bur_eligible_spain
-				}
-				if = {
-					limit = {
-						has_country_flag = spain_spa
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						has_country_flag = spain_cas
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
 				}
 			}
 			# The Rest to Emperor
@@ -906,39 +782,6 @@ country_event = {
 					country_event = { id = flavor_bur.5 days = 3 }
 				}
 			}
-			# Spain
-			if = {
-				limit = {
-					BUR = {
-						exists = yes
-						NOT = { has_country_flag = bur_eligible_france }
-						NOT = { has_country_flag = bur_eligible_emperor }
-						NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-						NOT = { has_country_flag = bur_eligible_marriage }
-						has_country_flag = bur_eligible_spain
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_spa
-						}
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_cas
-						}
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-			}
 			# The Rest to Emperor
 			if = {
 				limit = {
@@ -1050,39 +893,6 @@ country_event = {
 						has_country_flag = bur_marriage
 					}
 					country_event = { id = flavor_bur.5 days = 3 }
-				}
-			}
-			# Spain
-			if = {
-				limit = {
-					BUR = {
-						exists = yes
-						NOT = { has_country_flag = bur_eligible_france }
-						NOT = { has_country_flag = bur_eligible_emperor }
-						NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-						NOT = { has_country_flag = bur_eligible_marriage }
-						has_country_flag = bur_eligible_spain
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_spa
-						}
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_cas
-						}
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
 				}
 			}
 			# The Rest to Emperor
@@ -1270,39 +1080,6 @@ country_event = {
 					country_event = { id = flavor_bur.5 days = 3 }
 				}
 			}
-			# Spain
-			if = {
-				limit = {
-					BUR = {
-						exists = yes
-						NOT = { has_country_flag = bur_eligible_france }
-						NOT = { has_country_flag = bur_eligible_emperor }
-						NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-						NOT = { has_country_flag = bur_eligible_marriage }
-						has_country_flag = bur_eligible_spain
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_spa
-						}
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_cas
-						}
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-			}
 			# Neighbor
 			if = {
 				limit = {
@@ -1466,39 +1243,6 @@ country_event = {
 						has_country_flag = bur_marriage
 					}
 					country_event = { id = flavor_bur.5 days = 3 }
-				}
-			}
-			# Spain
-			if = {
-				limit = {
-					BUR = {
-						exists = yes
-						NOT = { has_country_flag = bur_eligible_france }
-						NOT = { has_country_flag = bur_eligible_emperor }
-						NOT = { has_country_flag = bur_eligible_marriage_neighbor }
-						NOT = { has_country_flag = bur_eligible_marriage }
-						has_country_flag = bur_eligible_spain
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_spa
-						}
-					}
-					SPA = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
-				}
-				if = {
-					limit = {
-						BUR = {
-							has_country_flag = spain_cas
-						}
-					}
-					CAS = {
-						country_event = { id = flavor_bur.19 days = 3 }
-					}
 				}
 			}
 			# The Rest to Emperor

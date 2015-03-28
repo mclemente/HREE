@@ -33,9 +33,6 @@ country_event = {
 	option = {
 		ai_chance = { factor = 50 }
 		name = flavor_boh.1.a
-		trigger = {
-			has_regency = yes
-		}
 		add_papal_influence = -100
 		if = {
 			limit = {

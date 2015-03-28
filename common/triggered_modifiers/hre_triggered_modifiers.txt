@@ -9,6 +9,7 @@ prince_elector = {
 	}
 	prestige = 0.25
 	legitimacy = 0.25
+	prestige_decay = -0.015
 	#picture = "legitimacy"
 }
 

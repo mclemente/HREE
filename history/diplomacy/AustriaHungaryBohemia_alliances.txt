@@ -95,11 +95,19 @@ union = {
 }
 
 #Regency for Ladislaus V
-union = {
+vassal = {
 	first = HUN
 	second = BOH
 	start_date = 1444.11.11
-	end_date = 1457.11.24
+	end_date = 1452.1.1
+}
+
+#Regency for Ladislaus V
+vassal = {
+	first = HAH
+	second = BOH
+	start_date = 1452.1.1
+	end_date = 1453.10.28
 }
 
 # Bohemia-Hungary

@@ -34,6 +34,8 @@ l_english:
  hre_opinion_penny_tooltip: "[HLR.hre_opinion_penny.GetName]: §Y[HLR.hre_opinion_penny.GetValue]§!"
  empire_member_mood_tooltip: "[HLR.empire_member_mood.GetName]: §Y[HLR.empire_member_mood.GetValue]§!"
  TOTAL_PENNY_COLLECTED: "[HLR.empire_common_penny.GetName]: §Y[HLR.empire_common_penny.GetValue]¤§!"
+ hre_vote_count_total:  "[This.hre_vote_count.GetName]: §Y[This.hre_vote_count.GetValue]§!"
+ controls_hre_prince: "§Ycontrol at least one [HLR.GetName]'s member"
  #Events
  REICHSREGIMENT_PASSED: "The Reichsregiment reform has passed."
  LANDFRIEDE_PASSED: "The Ewiger Landfriede reform has passed"

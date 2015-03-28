@@ -22,7 +22,10 @@ country_event = {
 			every_country = {
 				limit = {
 					is_elector = yes
-					government = monarchy
+					OR = {
+						government = monarchy
+						government = feudal_monarchy_governor
+					}
 				}
 				HLR = {	change_variable = { which = num_of_lay_electors value = 1 } }
 				set_country_flag = hre_elector
@@ -62,11 +65,63 @@ country_event = {
 				}
 				country_event = { id = hre_war.7 days = 3 }
 			}
+			every_country = {
+				limit = {
+					is_part_of_hre = yes
+				}
+				if = {
+					limit = {
+						is_subject = no
+					}
+					set_variable = { which = hre_vote_count value = 1 }
+				}
+				if = {
+					limit = {
+						is_subject = yes
+						overlord = { is_part_of_hre = no }
+					}
+					set_variable = { which = hre_vote_count value = 1 }
+				}
+				if = {
+					limit = {
+						is_subject = yes
+						overlord = { is_part_of_hre = yes }
+					}
+					set_variable = { which = hre_vote_count value = 0 }
+				}
+			}
 			set_global_flag = hre_initiated
 		}
 	}
 	
 	option = {
 		name = OK
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_part_of_hre = yes
+				}
+				if = {
+					limit = {
+						is_elector = yes
+					}
+					change_variable = { which = hre_vote_count value = 1 }
+				}
+				if = {
+					limit = {
+						is_emperor = yes
+					}
+					change_variable = { which = hre_vote_count value = 1 }
+				}
+				every_country = {
+					limit = {
+						is_subject_of = PREV
+						is_part_of_hre = yes
+					}
+					overlord = { change_variable = { which = hre_vote_count value = PREV } }
+					set_variable = { which = hre_vote_count value = 0 }
+				}
+			}
+		}
 	}
 }

@@ -6,6 +6,10 @@ l_english:
  passed_reforms_desc: "Shows the Empire's current reforms."
  see_hre_variables_title: "Show HRE Variables/Reforms"
  see_hre_variables_desc: "Shows the current Variables and Reforms of the HRE."
+ see_hre_vote_power_title: "Show Vote Power"
+ see_hre_vote_power_desc: "Shows the current Vote Power of every member of the Empire.\nMembers with 0 Vote Power are probably vassals/under a PU and may not vote during Diets, their votes belong to their liege."
+ see_hre_foreign_controllers_title: "Show Foreign Overlords of Imperial Members"
+ see_hre_foreign_controllers_desc: "Shows nations that rule over members of the [HLR.GetName]."
  #EVENTS
  #Startup
  hre_startup.0.t: "The Holy Roman Empire"
@@ -15,7 +19,7 @@ l_english:
  hre_misc.0.oa: "Should we call for peace?"
  hre_misc.0.ob: "[HLR.GetName] shall be [Root.Religion.GetName]"
  hre_misc.1.t: "Peace of $PROVINCENAME$"
- hre_misc.1.d: "The War of Religion in the Empire has ended. As the two sides have assembled in the city of $PROVINCECAPITAL$ in $PROVINCENAME$ to sign a compromise peace. According to the terms of the Peace of $PROVINCENAME$, the confessional faith of each state shall be determined by its ruler, according to the principle of 'Whose realm, his religion'."
+ hre_misc.1.d: "The War of Religion in the Empire has ended. As the two sides have assembled in the city of $PROVINCECAPITAL$ in $PROVINCENAME$ to sign a compromise peace. According to the terms of the Peace of $PROVINCENAME$, the confessional faith of each state shall be determined by its ruler, according to the principle of 'Whose realm, their religion'."
  hre_misc.1.oa: "Deus Vult!"
  hre_misc.2.t: "No Peace in the Empire"
  hre_misc.2.d: "It appears the conversation between the leaders of the religious leagues has led to nothing. The War of Religion wages on."
@@ -38,12 +42,14 @@ l_english:
  num_of_spiritual_electors: "Spiritual Electors"
  hre_opinion_reichsregiment: "Prince's Opinion of the Reichsregiment"
  hre_opinion_penny: "Prince's Opinion of the Common Penny"
+ hre_vote_count: "Vote Count"
+ negative_hre_vote_count: "Vote Count"
  #FLAGS
  landfriede_passed: "Ewiger Landfriede"
  had_diet1495: "Reichsreform"
  #EVENT MODIFIERS
  hre_imperial_ban: "Imperial Ban"
- desc_hre_imperial_ban: "Our ruler has been banned from his rights along the Empire. The Emperor still will defend us, but we won't have the benefits of being a member of the Empire itself until our ruler lives."
+ desc_hre_imperial_ban: "Our ruler has been banned from [Root.Monarch.GetHerHis] rights along the Empire. The Emperor still will defend us, but we won't have the benefits of being a member of the Empire itself until our ruler lives."
  elector_through_pu_with: "Gained Electorate"
  emperor_denies_reforms: "Denied Reforms"
  declared_war_on_member: "Declared War upon a Member"

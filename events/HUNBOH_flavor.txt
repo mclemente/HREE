@@ -1,0 +1,62 @@
+namespace = hunboh_government
+country_event = {
+	id = hunboh_government.0
+	
+	trigger = {
+		OR = {
+			tag = HUN
+			tag = HAB
+		}
+		NOT = { has_ruler = "(Regent) János" }
+		government = monarchy
+		has_regency = no
+		BOH = {
+			vassal_of = ROOT
+			government = feudal_monarchy_governor
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 12
+		modifier = {
+			factor = 1.5
+			NOT = { legitimacy = 75 }
+		}
+	}
+	
+	option = {
+		hidden_effect = { BOH = { change_government = feudal_monarchy } }
+		create_union = BOH
+	}
+	
+	option = {
+		trigger = {
+			ai = no
+			BOH = {
+				ai = yes
+				was_player = no
+			}
+			NOT = { tag = HAB }
+		}
+		BOH = { change_government = feudal_monarchy }
+		create_union = BOH
+		switch_tag = BOH #Play as someone into HRE
+	}
+}
+
+country_event = {
+	id = hunboh_government.1
+	
+	trigger = {
+		tag = BOH
+		government = feudal_monarchy_governor
+		NOT = { vassal_of = HUN }
+	}
+	
+	mean_time_to_happen = { days = 1 }
+	
+	option = {
+		name = OK
+		change_government = feudal_monarchy
+	}
+}

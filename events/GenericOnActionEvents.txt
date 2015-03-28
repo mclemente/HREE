@@ -1,0 +1,82 @@
+# Integrating FROMCOUNTRY
+country_event = {
+	id = 610
+	title = "EVTNAME610"
+	desc = "EVTDESC610"
+	picture = DEBATE_REPUBLICAN_eventPicture
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					is_part_of_hre = yes
+				}
+				set_variable = { which = hre_vote_count value = 1 }
+				if = {
+					limit = {
+						is_elector = yes
+					}
+					change_variable = { which = hre_vote_count value = 1 }
+				}
+				every_country = {
+					limit = {
+						is_subject_of = ROOT
+						is_part_of_hre = yes
+					}
+					if = {
+						limit = {
+							check_variable = { which = hre_vote_count value = 2 }
+						}
+						ROOT = { change_variable = { which = hre_vote_count value = PREV } }
+					}
+					if = {
+						limit = {
+							OR = {
+								is_variable_equal = { which = hre_vote_count value = 1 }
+								is_variable_equal = { which = hre_vote_count value = 0 }
+							}
+						}
+						ROOT = { change_variable = { which = hre_vote_count value = 1 } }
+					}
+					set_variable = { which = hre_vote_count value = 0 }
+				}
+				FROM = { ROOT = { change_variable = { which = hre_vote_count value = PREV } } }
+			}
+		}
+	}
+	
+	option = {
+		name = "EVTOPTB610A"
+		add_country_modifier = {
+			name = "annexers_legacy"
+			duration = 3650
+		}
+	}
+}
+
+# Chance of being triggered when an heir with a weak claim succeeds to the throne
+country_event = {
+	id = 611
+	title = "EVTNAME611"
+	desc = "EVTDESC611"
+	picture = MILITARY_CAMP_eventPicture
+	
+	is_triggered_only = yes
+	
+	trigger = { 
+		num_of_cities = 3 
+		government = monarchy
+	}
+	
+	option = {
+		name = "EVTOPTB611A"
+		random_owned_province = {
+			limit = { 
+				is_in_capital_area = yes
+			}
+			pretender_rebels = 1
+		}
+	}
+}

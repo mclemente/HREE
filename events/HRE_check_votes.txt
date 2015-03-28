@@ -1,0 +1,76 @@
+namespace = hre_check_votes
+country_event = {
+	id = hre_check_votes.0
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_part_of_hre = yes
+		is_subject = no
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_variable = { which = hre_vote_count value = 1 }
+			if = {
+				limit = {
+					is_elector = yes
+				}
+				change_variable = { which = hre_vote_count value = 1 }
+			}
+			if = {
+				limit = {
+					is_emperor = yes
+				}
+				change_variable = { which = hre_vote_count value = 1 }
+			}
+			every_country = {
+				limit = {
+					is_subject_of = ROOT
+					is_part_of_hre = yes
+				}
+				ROOT = { change_variable = { which = hre_vote_count value = PREV } }
+				set_variable = { which = hre_vote_count value = 0 }
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+	id = hre_check_votes.0
+	
+	trigger = {
+		is_part_of_hre = yes
+		is_subject = no
+		is_variable_equal = { which = hre_vote_count value = 0 }
+		is_at_war = no
+	}
+	
+	immediate = {
+		hidden_effect = {
+			set_variable = { which = hre_vote_count value = 1 }
+			if = {
+				limit = {
+					is_elector = yes
+				}
+				change_variable = { which = hre_vote_count value = 1 }
+			}
+			every_country = {
+				limit = {
+					is_subject_of = ROOT
+					is_part_of_hre = yes
+				}
+				ROOT = { change_variable = { which = hre_vote_count value = PREV } }
+				set_variable = { which = hre_vote_count value = 0 }
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}

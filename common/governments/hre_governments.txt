@@ -1,0 +1,15 @@
+feudal_monarchy_governor = {
+	republic = yes
+	
+	allow_convert = no
+	republican_name = no
+	royal_marriage = yes
+	
+	valid_for_new_country = no
+	valid_for_nation_designer = no
+	nation_designer_cost = 0
+	
+	#bonus
+	vassal_income = 0.25
+	global_manpower_modifier = 0.1
+}

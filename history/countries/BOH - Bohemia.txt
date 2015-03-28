@@ -1,4 +1,4 @@
-government = feudal_monarchy
+government = feudal_monarchy_governor
 mercantilism = 0.2
 primary_culture = czech
 religion = catholic
@@ -36,6 +36,20 @@ technology_group = western
 	}
 }
 
+1448.1.1 = {
+	monarch = {
+		name = "Jirí"
+		dynasty = "z Podebrad"
+		birth_date = 1420.4.23
+		adm = 5
+		dip = 3
+		mil = 2
+		leader = {	name = "Jirí z Podebrad"         	type = general	rank = 1	fire = 4	shock = 4	manuever = 4	siege = 1	death_date = 1453.10.28 }
+	}
+}
+
+1453.10.28 = { government = feudal_monarchy }
+
 # Personal Union with Habsburg under Ladislaus Postumus 1453-1457
 
 1457.11.24 = {
@@ -46,6 +60,7 @@ technology_group = western
 		adm = 5
 		dip = 3
 		mil = 2
+		leader = {	name = "Jirí z Podebrad"         	type = general	rank = 1	fire = 4	shock = 4	manuever = 4	siege = 1	death_date = 1471.3.23 }
 	}
 }
 

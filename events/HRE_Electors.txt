@@ -217,6 +217,7 @@ country_event = {
 			is_elector = yes
 			government = republic
 			is_at_war = no
+			NOT = { government = feudal_monarchy_republic }
 		}
 		is_at_war = no
 	}

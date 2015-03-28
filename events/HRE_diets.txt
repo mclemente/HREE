@@ -51,7 +51,7 @@ country_event = {
 			every_country = {
 				limit = {
 					is_part_of_hre = yes
-					is_lesser_in_union = no
+					is_subject = no
 				}
 				country_event = { id = hre_reforms.1 days = 7 random = 2 }
 			}
@@ -90,6 +90,13 @@ country_event = {
 	
 	immediate = {
 		hidden_effect = { country_event = { id = hre_reforms.2 days = 15 random = 2 } }
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 	}
 	
 	option = { #Favor
@@ -105,7 +112,7 @@ country_event = {
 				is_part_of_hre = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_reichsregiment value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_reichsregiment which = hre_vote_count } }
 	}
 
 	option = { #Against
@@ -113,7 +120,7 @@ country_event = {
 		ai_chance = {
 			factor = 50
 		}
-		HLR = { change_variable = { which = imperial_reform_reichsregiment value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_reichsregiment which = negative_hre_vote_count } }
 	}
 }
 
@@ -128,6 +135,13 @@ country_event = {
 	
 	immediate = {
 		hidden_effect = { country_event = { id = hre_reforms.3 days = 15 random = 2 } }
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 	}
 	
 	option = {
@@ -151,7 +165,7 @@ country_event = {
 				personality = ai_diplomat
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_landfriede value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_landfriede which = hre_vote_count } }
 	}
 
 	option = {
@@ -175,7 +189,7 @@ country_event = {
 				personality = ai_militarist
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_landfriede value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_landfriede which = hre_vote_count } }
 	}
 }
 
@@ -188,7 +202,16 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	immediate = { hidden_effect = { country_event = { id = hre_reforms.4 days = 15 random = 2 } } }
+	immediate = {
+		hidden_effect = { country_event = { id = hre_reforms.4 days = 15 random = 2 } }
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
+	}
 	
 	option = {
 		name = hre_reforms.1.oa
@@ -203,7 +226,7 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_chamber value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_chamber which = hre_vote_count } }
 	}
 		
 	option = {
@@ -215,7 +238,7 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_chamber value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_chamber which = hre_vote_count } }
 	}
 }
 
@@ -227,6 +250,16 @@ country_event = {
 	picture = DEBATE_REPUBLICAN_eventPicture
 	
 	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
+	}
 	
 	option = {
 		name = hre_reforms.1.oa
@@ -241,7 +274,7 @@ country_event = {
 			limit = { is_emperor = yes }
 			set_global_flag = emperor_backed_penny
 		}
-		HLR = { change_variable = { which = imperial_reform_penny value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_penny which = hre_vote_count } }
 	}
 	
 	option = {
@@ -249,7 +282,7 @@ country_event = {
 		ai_chance = {
 			factor = 50
 		}
-		HLR = { change_variable = { which = imperial_reform_penny value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_penny which = hre_vote_count } }
 	}
 }
 #################################################
@@ -339,6 +372,7 @@ country_event = {
 		if = {
 			limit = { HLR = { check_variable = { which = imperial_reform_reichsregiment value = 1 } } }
 			set_global_flag = reichsregiment_passed
+			hidden_effect = { HLR = { set_variable = { which = hre_opinion_reichsregiment value = 1 }
 		}
 		if = {
 			limit = { HLR = { check_variable = { which = imperial_reform_landfriede value = 1 } } }
@@ -825,7 +859,7 @@ province_event = {
 				every_country = {
 					limit = {
 						is_part_of_hre = yes
-						is_lesser_in_union = no
+						is_subject = no
 					}
 					country_event = { id = hre_reforms.14 days = 7 random = 2 }
 				}
@@ -838,7 +872,7 @@ province_event = {
 				every_country = {
 					limit = {
 						is_part_of_hre = yes
-						is_lesser_in_union = no
+						is_subject = no
 					}
 					country_event = { id = hre_reforms.15 days = 7 random = 2 }
 				}
@@ -853,7 +887,7 @@ province_event = {
 				every_country = {
 					limit = {
 						is_part_of_hre = yes
-						is_lesser_in_union = no
+						is_subject = no
 					}
 					country_event = { id = hre_reforms.16 days = 7 random = 2 }
 				}
@@ -868,7 +902,7 @@ province_event = {
 				every_country = {
 					limit = {
 						is_part_of_hre = yes
-						is_lesser_in_union = no
+						is_subject = no
 					}
 					country_event = { id = hre_reforms.17 days = 7 random = 2 }
 				}
@@ -884,7 +918,7 @@ province_event = {
 				every_country = {
 					limit = {
 						is_part_of_hre = yes
-						is_lesser_in_union = no
+						is_subject = no
 					}
 					country_event = { id = hre_reforms.18 days = 7 random = 2 }
 				}
@@ -904,6 +938,13 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 		hidden_effect = {
 			if = {
 				limit = {
@@ -960,7 +1001,7 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_penny value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_penny which = hre_vote_count } }
 	}
 	
 	#Deny (Revoke, in this case)
@@ -973,7 +1014,7 @@ country_event = {
 				had_global_flag = { flag = penny_passed days = 3000 }
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_penny value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_penny which = hre_vote_count } }
 	}
 }
 
@@ -987,6 +1028,13 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 		hidden_effect = {
 			if = {
 				limit = { NOT = { has_global_flag = landfriede_passed } }
@@ -1020,7 +1068,7 @@ country_event = {
 				is_emperor = no
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_reichsregiment value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_reichsregiment which = hre_vote_count } }
 	}
 	
 	#Deny
@@ -1033,7 +1081,7 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_reichsregiment value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_reichsregiment which = hre_vote_count } }
 	}
 }
 
@@ -1047,6 +1095,13 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 		hidden_effect = {
 			if = {
 				limit = { NOT = { has_global_flag = chamber_passed } }
@@ -1084,10 +1139,10 @@ country_event = {
 				personality = ai_diplomat
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_landfriede value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_landfriede which = hre_vote_count } }
 	}
 	
-	#Deny (Revoke, in this case)
+	#Deny
 	option = {
 		name = hre_reforms.1.oc
 		ai_chance = {
@@ -1109,7 +1164,7 @@ country_event = {
 				personality = ai_militarist
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_landfriede value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_landfriede which = hre_vote_count } }
 	}
 }
 
@@ -1123,6 +1178,13 @@ country_event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1147,10 +1209,10 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_chamber value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_chamber which = hre_vote_count } }
 	}
 	
-	#Deny (Revoke, in this case)
+	#Deny
 	option = {
 		name = hre_reforms.1.oc
 		ai_chance = {
@@ -1160,7 +1222,7 @@ country_event = {
 				is_emperor = yes
 			}
 		}
-		HLR = { change_variable = { which = imperial_reform_chamber value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_chamber which = hre_vote_count } }
 	}
 }
 
@@ -1173,22 +1235,32 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+	immediate = {
+		hidden_effect = {
+			HLR = {
+				set_variable = { which = hre_vote_count which = ROOT }
+				set_variable = { which = negative_hre_vote_count which = hre_vote_count } #thanks Paradox for removing subtract_variable, it was totally useless!
+				multiply_variable = { which = negative_hre_vote_count value = -1 }
+			}
+		}
+	}
+	
 	#Pass
 	option = {
 		name = hre_reforms.1.oa
 		ai_chance = {
 			factor = 50
 		}
-		HLR = { change_variable = { which = imperial_reform_inheritable value = 1 } }
+		HLR = { change_variable = { which = imperial_reform_inheritable which = hre_vote_count } }
 	}
 	
-	#Deny (Revoke, in this case)
+	#Deny
 	option = {
 		name = hre_reforms.1.oc
 		ai_chance = {
 			factor = 50
 		}
-		HLR = { change_variable = { which = imperial_reform_inheritable value = -1 } }
+		HLR = { change_variable = { which = imperial_reform_inheritable which = hre_vote_count } }
 	}
 }
 

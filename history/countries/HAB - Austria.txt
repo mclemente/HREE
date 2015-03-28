@@ -61,7 +61,7 @@ national_focus = ADM
 
 1452.1.1 = {
 	monarch = {
-		name = "Ladislaus Postumus"
+		name = "Ladislaus I"
 		dynasty = "von Habsburg"
 		birth_date = 1440.2.22
 		adm = 3

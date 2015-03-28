@@ -1,14 +1,12 @@
 l_english:
- #Tags
- PAL: "Electoral Palatinate"
  #TITLES
- elector_feudal_monarchy: "Imperial Elector"
- elector_feudal_monarchy_ruler_rheinlaender: "Elector Palatine"
- elector_feudal_monarchy_ruler_female_rheinlaender: "Electress Palatine"
- elector_feudal_monarchy_desc: "A governmental form where power is shared between the monarch and the nobles, where labor or military services are offered in exchange for land."
- elector_feudal_monarchy_saxon: "Margraviate"
- elector_feudal_monarchy_ruler_saxon: "Margrave"
- elector_feudal_monarchy_ruler_female_saxon: "Margravine"
+ #Bohemia
+ feudal_monarchy_governor: "Feudal Monarchy"
+ feudal_monarchy_governor_christian: "Kingdom"
+ feudal_monarchy_governor_ruler: "Governor"
+ feudal_monarchy_governor_ruler_female: "Governor"
+ feudal_monarchy_governor_desc: "A governmental form where their overlord rules and decides who's going to command the nation."
+ #Germans
  feudal_monarchy_germanic: "Duchy"
  feudal_monarchy_ruler_germanic: "Duke"
  feudal_monarchy_ruler_female_germanic: "Duchess"
@@ -28,5 +26,12 @@ l_english:
  administrative_monarchy_latin: "Duchy"
  administrative_monarchy_ruler_latin: "Duke"
  administrative_monarchy_ruler_female_latin: "Duchess"
+ #Burgundians
+ feudal_monarchy_burgundian: "Duchy"
+ feudal_monarchy_ruler_burgundian: "Duke"
+ feudal_monarchy_ruler_female_burgundian: "Duchess"
+ despotic_monarchy_burgundian: "Duchy"
+ despotic_monarchy_ruler_burgundian: "Duke"
+ despotic_monarchy_ruler_female_burgundian: "Duchess"
  #WAR NAMES
  AGRESSION_WAR_NAME: "$ORDER$War of $FIRST$-$SECOND$ Aggression"
